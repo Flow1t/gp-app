@@ -16,6 +16,8 @@ st.markdown(
     - GP Generator
     - Opex Summary Generator
     - Opex per Cabang Generator
+    \n\n
+    Created by: ***Devin Augustin***
 """
 )
 
