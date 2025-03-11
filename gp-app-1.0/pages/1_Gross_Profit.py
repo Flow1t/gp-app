@@ -27,14 +27,15 @@ def process_gp(file1, file2):
     }
     
     # Function to download and read Excel files
-    def load_excel_from_github(url):
-        try:
-            response = requests.get(url)
-            response.raise_for_status()  # Raise error if request fails
-            return pd.read_excel(BytesIO(response.content))
-        except Exception as e:
-            st.error(f"Error loading file: {url}\n{e}")
-            return None
+    def load_excel_from_github(url, sheet_name=None):
+        """Loads an Excel file from a GitHub raw URL and reads the specified sheet."""
+        response = requests.get(url)
+        
+        if response.status_code == 200:
+            excel_data = BytesIO(response.content)  # Convert to file-like object
+            return pd.read_excel(excel_data, sheet_name=sheet_name)  # Read the requested sheet
+        else:
+            raise FileNotFoundError(f"Failed to load Excel file from {url}. Status code: {response.status_code}")
 
     def load_text_from_github(file_name):
         url = file_name
