@@ -15,7 +15,7 @@ def process_gp(file1, file2):
     df2 = pd.read_excel(file2, header = 5)
     df2 = df2.iloc[:-1]
 
-    ws = pd.read_excel("DF Prima  2023 dan 2024 ACTUAL SUPPORT.xlsx", sheet_name= "ALL")
+    ws = pd.read_excel("DF Prima 2023 dan 2024 ACTUAL SUPPORT.xlsx", sheet_name= "ALL")
     rs = pd.read_excel("ALL RS.xlsx", sheet_name = 'RS')
     price = pd.read_excel("Pricelist Car.xlsx", sheet_name = 'Pricelist')
     with open('wilayah.txt', 'r') as file:
