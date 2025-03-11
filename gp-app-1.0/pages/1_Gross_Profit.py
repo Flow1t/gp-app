@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import requests
+from io import BytesIO
 
 st.set_page_config(page_title="GP")
 st.sidebar.header("GP File Generator")
@@ -14,15 +16,41 @@ def process_gp(file1, file2):
     df1 = df1.iloc[:-1]
     df2 = pd.read_excel(file2, header = 5)
     df2 = df2.iloc[:-1]
+    
+    # List of file names in your GitHub repository
+    file_urls = {
+        "df_prima": "https://github.com/Flow1t/gp-app/blob/e8a3ac18f89b9afe3bd2184d66ccc497041a4ef3/DF%20Prima%20%202023%20dan%202024%20ACTUAL%20SUPPORT.xlsx",
+        "all_rs": "https://github.com/Flow1t/gp-app/blob/e8a3ac18f89b9afe3bd2184d66ccc497041a4ef3/ALL%20RS.xlsx",
+        "pricelist": "https://github.com/Flow1t/gp-app/blob/e8a3ac18f89b9afe3bd2184d66ccc497041a4ef3/Pricelist%20Car.xlsx",
+        "jabodetabek": "https://github.com/Flow1t/gp-app/blob/e8a3ac18f89b9afe3bd2184d66ccc497041a4ef3/wilayah.txt",
+        "luar_jabodetabek": "https://github.com/Flow1t/gp-app/blob/e8a3ac18f89b9afe3bd2184d66ccc497041a4ef3/luar%20jawa.txt"
+    }
+    
+    # Function to download and read Excel files
+    def load_excel_from_github(url):
+        try:
+            response = requests.get(url)
+            response.raise_for_status()  # Raise error if request fails
+            return pd.read_excel(BytesIO(response.content))
+        except Exception as e:
+            st.error(f"Error loading file: {url}\n{e}")
+            return None
 
-    ws = pd.read_excel("DF Prima 2023 dan 2024 ACTUAL SUPPORT.xlsx", sheet_name= "ALL")
-    rs = pd.read_excel("ALL RS.xlsx", sheet_name = 'RS')
-    price = pd.read_excel("Pricelist Car.xlsx", sheet_name = 'Pricelist')
-    with open('wilayah.txt', 'r') as file:
-        valid_valuesA = {value.strip() for line in file for value in line.split(',')}
+    def load_text_from_github(file_name):
+        url = file_name
+        response = requests.get(url)
+    
+        if response.status_code == 200:
+            return {value.strip() for line in response.text.splitlines() for value in line.split(',')}
+        else:
+            st.error(f"Failed to load {file_name} from GitHub")
+            return set()
 
-    with open('luar jawa.txt', 'r') as file:
-        valid_valuesB = {value.strip() for line in file for value in line.split(',')}
+    ws = load_excel_from_github(file_urls["df_prima"], sheet_name= "ALL")
+    rs = load_excel_from_github(file_urls["all_rs"], sheet_name = 'RS')
+    price = load_excel_from_github(file_urls["pricelist"], sheet_name = 'Pricelist')
+    valid_valuesA = load_text_from_github("jabodetabek")
+    valid_valuesB = load_text_from_github("luar_jabodetabek")
     
     # **Combining Headers**
     #GP Report
