@@ -18,7 +18,7 @@ def process_gp(file1, file2):
     df2 = df2.iloc[:-1]
     
     # List of file names in your GitHub repository
-    file_urls = {gp-app-1.0/ALL RS.xlsx
+    file_urls = {
         "df_prima": "https://raw.githubusercontent.com/Flow1t/gp-app/gp-app-1.0/e8a3ac18f89b9afe3bd2184d66ccc497041a4ef3/DF%20Prima%20%202023%20dan%202024%20ACTUAL%20SUPPORT.xlsx",
         "all_rs": "https://raw.githubusercontent.com/gp-app/gp-app-1.0/e8a3ac18f89b9afe3bd2184d66ccc497041a4ef3/ALL%20RS.xlsx",
         "pricelist": "https://raw.githubusercontent.com/Flow1t/gp-app/gp-app-1.0/e8a3ac18f89b9afe3bd2184d66ccc497041a4ef3/Pricelist%20Car.xlsx",
