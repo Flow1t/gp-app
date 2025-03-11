@@ -33,7 +33,7 @@ def process_gp(file1, file2):
         
         if response.status_code == 200:
             excel_data = BytesIO(response.content)  # Convert to file-like object
-            return pd.read_excel(excel_data, sheet_name=sheet_name)  # Read the requested sheet
+            return pd.read_excel(excel_data, sheet_name=sheet_name, engine="openpyxl)  # Read the requested sheet
         else:
             raise FileNotFoundError(f"Failed to load Excel file from {url}. Status code: {response.status_code}")
 
