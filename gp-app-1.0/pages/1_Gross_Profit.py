@@ -50,8 +50,8 @@ def process_gp(file1, file2):
     ws = load_excel_from_github(file_urls["df_prima"], sheet_name= "ALL")
     rs = load_excel_from_github(file_urls["all_rs"], sheet_name = 'RS')
     price = load_excel_from_github(file_urls["pricelist"], sheet_name = 'Pricelist')
-    valid_valuesA = load_text_from_github("jabodetabek")
-    valid_valuesB = load_text_from_github("luar_jabodetabek")
+    valid_valuesA = load_text_from_github(file_urls["jabodetabek"])
+    valid_valuesB = load_text_from_github(file_urls["luar_jabodetabek"])
     
     # **Combining Headers**
     #GP Report
