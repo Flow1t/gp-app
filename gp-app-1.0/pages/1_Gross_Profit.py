@@ -19,9 +19,9 @@ def process_gp(file1, file2):
     
     # List of file names in your GitHub repository
     file_urls = {
-        "df_prima": "https://raw.githubusercontent.com/Flow1t/gp-app/gp-app-1.0/DF%20Prima%20%202023%20dan%202024%20ACTUAL%20SUPPORT.xlsx",
+        "df_prima": "https://raw.githubusercontent.com/Flow1t/gp-app/main/gp-app-1.0/DF%20Prima%20%202023%20dan%202024%20ACTUAL%20SUPPORT.xlsx",
         "all_rs": "https://raw.githubusercontent.com/Flow1t/gp-app/main/gp-app-1.0/ALL%20RS.xlsx",
-        "pricelist": "https://raw.githubusercontent.com/Flow1t/gp-app/gp-app-1.0/Pricelist%20Car.xlsx",
+        "pricelist": "https://raw.githubusercontent.com/Flow1t/gp-app/main/gp-app-1.0/Pricelist%20Car.xlsx",
         "jabodetabek": "https://raw.githubusercontent.com/Flow1t/gp-app/refs/heads/main/gp-app-1.0/wilayah.txt",
         "luar_jabodetabek": "https://raw.githubusercontent.com/Flow1t/gp-app/refs/heads/main/gp-app-1.0/luar%20jawa.txt"
     }
