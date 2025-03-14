@@ -5,7 +5,21 @@ st.set_page_config(page_title="Opex Summary")
 st.sidebar.header("Opex Summary Generator")
 
 def opex_summary(opex_file):
-    opex_sum = pd.read_excel("opex sum.xlsx")
+    file_url = {
+        "opex_sum" : "https://raw.githubusercontent.com/Flow1t/gp-app/main/gp-app-1.0/opex%20sum.xlsx"
+    }
+
+     def load_excel_from_github(url, sheet_name=None):
+        """Loads an Excel file from a GitHub raw URL and reads the specified sheet."""
+        response = requests.get(url)
+        
+        if response.status_code == 200:
+            excel_data = BytesIO(response.content)  # Convert to file-like object
+            return pd.read_excel(excel_data, sheet_name=sheet_name, engine="openpyxl")  # Read the requested sheet
+        else:
+            raise FileNotFoundError(f"Failed to load Excel file from {url}. Status code: {response.status_code}")
+
+    opex_sum = load_excel_from_github(file_url["opex_sum"])
     opex_sum = opex_sum.iloc[:, 1:]
     opex = pd.read_excel(opex_file, header = 6, sheet_name = "KONSOLIDASI")
     opex = opex.reset_index(drop=True)
