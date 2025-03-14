@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import requests
 
 st.set_page_config(page_title="Opex Summary")
 st.sidebar.header("Opex Summary Generator")
