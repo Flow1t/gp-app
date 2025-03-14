@@ -9,7 +9,7 @@ def opex_summary(opex_file):
         "opex_sum" : "https://raw.githubusercontent.com/Flow1t/gp-app/main/gp-app-1.0/opex%20sum.xlsx"
     }
 
-     def load_excel_from_github(url, sheet_name=None):
+    def load_excel_from_github(url, sheet_name=None):
         """Loads an Excel file from a GitHub raw URL and reads the specified sheet."""
         response = requests.get(url)
         
