@@ -22,7 +22,7 @@ def opex_summary(opex_file):
             raise FileNotFoundError(f"Failed to load Excel file from {url}. Status code: {response.status_code}")
 
     opex_sum = load_excel_from_github(file_url["opex_sum"])
-    opex_sum = opex_sum.iloc[:, 1:]
+    #opex_sum = opex_sum.iloc[:, 1:]
     opex = pd.read_excel(opex_file, header = 6, sheet_name = "KONSOLIDASI")
     opex = opex.reset_index(drop=True)
     opex = opex.rename(columns={"Unnamed: 0": "Bulan"})
