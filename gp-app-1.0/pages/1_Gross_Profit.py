@@ -323,7 +323,7 @@ def process_gp(file1, file2):
                             GP_df['LOYAL CUSTOMER']+
                             GP_df['FREE INSURANCE']+
                             GP_df['FLUSH OUT']+
-                            GP_df['SURAY JALAN EV']+
+                            GP_df['SURAT JALAN EV']+
                             GP_df['WS SUBSIDI']+
                             GP_df['VOUCHER GIIAS']+
                             GP_df['BCA / BNI EXPO'])
