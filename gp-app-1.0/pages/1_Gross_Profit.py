@@ -185,6 +185,7 @@ def process_gp(file1, file2):
     columns_to_drop = [col for col in columns_to_drop if col != 'VOUCHER GIIAS']
     df1.drop(columns=columns_to_drop, inplace=True)
 
+    df1['VOUCHER EV & GIIAS, CASH DISKON/ trade in, EX Factory GAP'] = df1['FREE ELECTRICITY']
 
 
     df2.rename(columns={'CHASIS': 'NO CHASIS'}, inplace=True)
@@ -235,7 +236,7 @@ def process_gp(file1, file2):
             # 'Dealer Margin 9 %':0.0,
             # 'Dealer Margin 7 %':0.0,
             'SELISIH OTR':0,
-            'VOUCHER EV & GIIAS, CASH DISKON/ trade in, EX Factory GAP':0,
+            #'VOUCHER EV & GIIAS, CASH DISKON/ trade in, EX Factory GAP':0,
             'SUBSIDI EX KTT':0,
             #'VOUCHER GIIAS':0,
             'BCA / BNI EXPO':0,
