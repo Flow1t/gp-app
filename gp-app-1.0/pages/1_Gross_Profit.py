@@ -112,13 +112,13 @@ def process_gp(file1, file2):
     df1["FREE INSURANCE"] = df1.filter(regex='(?i)free insurance').sum(axis=1)
 
     # Combine all columns containing 'SURAT' by summing them (Insentif Surat Jalan)
-    df1['SURAT JALAN EV'] = df1.filter(regex='(?i)surat jalan|ev lite').sum(axis=1)
+    df1['SURAT JALAN EV'] = df1['SURAT JALAN']+df1['SURAT JALAN EV LITE']
     #columns_to_drop = df1.filter(regex='(?i)surat jalan|ev lite').columns
     #columns_to_drop = [col for col in columns_to_drop if col != 'SURAT JALAN EV']
     #df1.drop(columns=columns_to_drop, inplace=True)
-    
+
     # Combine all columns containing 'SURAT' by summing them (Biaya Surat Jalan)
-    df1['SURAT JALAN'] = df1.filter(regex='(?i)surat jalan jabodetabek|surat jalan jawa timur').sum(axis=1)
+    df1['SURAT JALAN'] = df1.filter(regex='(?i)surat jalan jabodetabek |surat jalan jawa timur ').sum(axis=1)
     #columns_to_drop = df1.filter(regex='(?i)surat jalan jabodetabek|surat jalan jawa timur').columns
     #columns_to_drop = [col for col in columns_to_drop if col != 'SURAT JALAN']
     #df1.drop(columns=columns_to_drop, inplace=True)
