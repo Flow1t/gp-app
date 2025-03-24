@@ -103,147 +103,87 @@ def process_gp(file1, file2):
     # **Aggregating Excel File Into A Report**
     # Combine all columns containing 'ONGKOS' by summing them
     df1['ONGKOS KIRIM'] = df1.filter(like="ONGKOS", axis=1).filter(regex='^(?!.*ONGKOS KIRIM KE KONSUMEN).*$', axis=1).sum(axis=1)
-
-    # Identify columns that contain 'ONGKOS' in their name
     columns_to_drop = df1.filter(like="ONGKOS").filter(regex='^(?!.*ONGKOS KIRIM KE KONSUMEN).*$', axis=1).columns
-
     columns_to_drop = [col for col in columns_to_drop if col != 'ONGKOS KIRIM']
-
-    # Drop the identified columns
     df1.drop(columns=columns_to_drop, inplace=True)
 
     df1["Special Incentive"] = df1.filter(regex='(?i)special incentive').sum(axis=1)
     df1["SALES PROGRAM"] = df1.filter(regex='(?i)rs subsidi').sum(axis=1)
     df1["FREE INSURANCE"] = df1.filter(regex='(?i)free insurance').sum(axis=1)
 
-    # Combine all columns containing 'SURAT' by summing them
-    df1['SURAT JALAN'] = df1.filter(like="SURAT").sum(axis=1)
+    # Combine all columns containing 'SURAT' by summing them (Insentif Surat Jalan)
+    df1['SURAT JALAN EV'] = df1.filter(regex='(?i)surat jalan|ev lite').sum(axis=1)
+    columns_to_drop = df1.filter(regex='(?i)surat jalan|ev lite').columns
+    columns_to_drop = [col for col in columns_to_drop if col != 'SURAT JALAN EV']
+    df1.drop(columns=columns_to_drop, inplace=True)
 
-    # Identify columns that contain 'SURAT' in their name
-    columns_to_drop = df1.filter(like="SURAT").columns
-
+    # Combine all columns containing 'SURAT' by summing them (Biaya Surat Jalan)
+    df1['SURAT JALAN'] = df1.filter(regex='(?i)surat jalan jabodetabek|surat jalan jawa timur').sum(axis=1)
+    columns_to_drop = df1.filter(regex='(?i)surat jalan jabodetabek|surat jalan jawa timur').columns
     columns_to_drop = [col for col in columns_to_drop if col != 'SURAT JALAN']
-
-    # Drop the identified columns
     df1.drop(columns=columns_to_drop, inplace=True)
 
     # Combine all columns containing 'FLEET / NEW YEAR' by summing them
     df1['SUBSIDI FLEET / WULING NEW YEAR'] = df1.filter(regex='(?i)fleet|new year').sum(axis=1)
-
-    # Identify columns that contain 'FLEET / NEW YEAR' in their name
     columns_to_drop = df1.filter(regex='(?i)fleet|new year').columns
-
     columns_to_drop = [col for col in columns_to_drop if col != 'SUBSIDI FLEET / WULING NEW YEAR']
-
-    # Drop the identified columns
     df1.drop(columns=columns_to_drop, inplace=True)
 
     # Combine all columns containing 'FLUSH' by summing them
     df1['FLUSH OUT'] = df1.filter(regex='(?i)flush').sum(axis=1)
-
-    # Identify columns that contain 'FLUSH' in their name
     columns_to_drop = df1.filter(regex='(?i)flush').columns
-
     columns_to_drop = [col for col in columns_to_drop if col != 'FLUSH OUT']
-
-    # Drop the identified columns
     df1.drop(columns=columns_to_drop, inplace=True)
 
     # Combine all columns containing 'LOYAL' by summing them
     df1['LOYAL CUSTOMER'] = df1.filter(regex='(?i)loyal').sum(axis=1)
-
-    # Identify columns that contain 'LOYAL' in their name
-    #The (?i) part in the regular expression makes the search case-insensitive.
     columns_to_drop = df1.filter(regex='(?i)loyal').columns
-
     columns_to_drop = [col for col in columns_to_drop if col != 'LOYAL CUSTOMER']
-
-    # Drop the identified columns
     df1.drop(columns=columns_to_drop, inplace=True)
 
     # Combine all columns containing 'GROUP' by summing them
     df1['GROUP CUSTOMER'] = df1.filter(regex='(?i)group customer|ice group').sum(axis=1)
-
-    # Identify columns that contain 'GROUP' in their name
-    #The (?i) part in the regular expression makes the search case-insensitive.
     columns_to_drop = df1.filter(regex='(?i)group customer|ice group').columns
-
     columns_to_drop = [col for col in columns_to_drop if col != 'GROUP CUSTOMER']
-
-    # Drop the identified columns
     df1.drop(columns=columns_to_drop, inplace=True)
 
     # Combine all columns containing 'WS' by summing them
     df1['SUBSIDI WS'] = df1.filter(regex='(?i)ws').sum(axis=1)
-
-    # Identify columns that contain 'WS' in their name
-    #The (?i) part in the regular expression makes the search case-insensitive.
     columns_to_drop = df1.filter(regex='(?i)ws').columns
-
     columns_to_drop = [col for col in columns_to_drop if col != 'SUBSIDI WS']
-
-    # Drop the identified columns
     df1.drop(columns=columns_to_drop, inplace=True)
 
     # Combine all columns containing 'long aging' by summing them
     df1['LONG AGING STOCK'] = df1.filter(regex='(?i)long aging').sum(axis=1)
-
-    # Identify columns that contain 'long aging' in their name
-    #The (?i) part in the regular expression makes the search case-insensitive.
     columns_to_drop = df1.filter(regex='(?i)long aging').columns
-
     columns_to_drop = [col for col in columns_to_drop if col != 'LONG AGING STOCK']
-
-    # Drop the identified columns
     df1.drop(columns=columns_to_drop, inplace=True)
 
     # Combine all columns containing 'maintenance' by summing them
     df1['SUBSIDI FREE SERVICE'] = df1.filter(regex='(?i)maintenance').sum(axis=1)
-
-    # Identify columns that contain 'maintenance' in their name
-    #The (?i) part in the regular expression makes the search case-insensitive.
     columns_to_drop = df1.filter(regex='(?i)maintenance').columns
-
     columns_to_drop = [col for col in columns_to_drop if col != 'SUBSIDI FREE SERVICE']
-
-    # Drop the identified columns
     df1.drop(columns=columns_to_drop, inplace=True)
 
     # Combine all columns containing 'poles|repair' by summing them
     df1['AKSESORIS LAIN-LAIN'] = df1.filter(regex='(?i)poles|repair').sum(axis=1)
-
-    # Identify columns that contain 'poles|repair' in their name
-    #The (?i) part in the regular expression makes the search case-insensitive.
     columns_to_drop = df1.filter(regex='(?i)poles|repair').columns
-
     columns_to_drop = [col for col in columns_to_drop if col != 'AKSESORIS LAIN-LAIN']
-
-    # Drop the identified columns
     df1.drop(columns=columns_to_drop, inplace=True)
 
     # Combine all columns containing 'kaca' by summing them
     df1['Kaca Film'] = df1.filter(regex='(?i)kaca').sum(axis=1)
-
-    # Identify columns that contain 'poles|repair' in their name
-    #The (?i) part in the regular expression makes the search case-insensitive.
     columns_to_drop = df1.filter(regex='(?i)kaca').columns
-
     columns_to_drop = [col for col in columns_to_drop if col != 'Kaca Film']
-
-    # Drop the identified columns
     df1.drop(columns=columns_to_drop, inplace=True)
 
     # Combine all columns containing 'voucher' by summing them
     df1['VOUCHER GIIAS'] = df1.filter(regex='(?i)voucher').sum(axis=1)
-
-    # Identify columns that contain voucher' in their name
-    #The (?i) part in the regular expression makes the search case-insensitive.
     columns_to_drop = df1.filter(regex='(?i)voucher').columns
-
     columns_to_drop = [col for col in columns_to_drop if col != 'VOUCHER GIIAS']
-
-    # Drop the identified columns
     df1.drop(columns=columns_to_drop, inplace=True)
+
+
 
     df2.rename(columns={'CHASIS': 'NO CHASIS'}, inplace=True)
     ws.rename(columns={'VIN Number': 'NO CHASIS'}, inplace=True)
@@ -253,7 +193,7 @@ def process_gp(file1, file2):
     combined_df = pd.merge(combined_df, ws, on = 'NO CHASIS', how = 'outer')
     combined_df = pd.merge(combined_df, rs, on = 'NO CHASIS', how = 'outer')
 
-    GP_df = combined_df[['NO_x', 'NAMA CABANG_x', 'GROUP KENDARAAN_x', 'Date', 'CUSTOMER_x', 'KOTA_x', 'TYPE_x', 'NO CHASIS', 'YEAR', 'Report Date', 'PRICE LIST', 'SALES PROGRAM', 'SUBSIDI PPN_x', 'SUBSIDI FREE SERVICE', 'SUBSIDI FLEET / WULING NEW YEAR', 'LONG AGING STOCK', 'Special Incentive', 'GROUP CUSTOMER', 'LOYAL CUSTOMER', 'FREE INSURANCE', 'FLUSH OUT', 'SUBSIDI WS', 'DISCOUNT TOTAL', 'INSENTIF', 'PDI', 'ONGKOS KIRIM', 'SURAT JALAN', 'FEE MEDIATOR','AKSESORIS LAIN-LAIN', 'ONGKOS KIRIM KE KONSUMEN', 'CASH/LEASING', 'TENOR', 'REFUND OFFICE_x', 'Kaca Film', 'VOUCHER GIIAS']].rename(
+    GP_df = combined_df[['NO_x', 'NAMA CABANG_x', 'GROUP KENDARAAN_x', 'Date', 'CUSTOMER_x', 'KOTA_x', 'TYPE_x', 'NO CHASIS', 'YEAR', 'Report Date', 'PRICE LIST', 'SALES PROGRAM', 'SUBSIDI PPN_x', 'SUBSIDI FREE SERVICE', 'SUBSIDI FLEET / WULING NEW YEAR', 'LONG AGING STOCK', 'Special Incentive', 'GROUP CUSTOMER', 'LOYAL CUSTOMER', 'FREE INSURANCE', 'FLUSH OUT', 'SUBSIDI WS', 'DISCOUNT TOTAL', 'INSENTIF', 'PDI', 'ONGKOS KIRIM', 'SURAT JALAN', 'FEE MEDIATOR','AKSESORIS LAIN-LAIN', 'ONGKOS KIRIM KE KONSUMEN', 'CASH/LEASING', 'TENOR', 'REFUND OFFICE_x', 'Kaca Film', 'VOUCHER GIIAS', 'SURAT JALAN EV']].rename(
         columns={
             'NO_x' : 'No', 
             'NAMA CABANG_x': 'Cabang', 
@@ -383,6 +323,7 @@ def process_gp(file1, file2):
                             GP_df['LOYAL CUSTOMER']+
                             GP_df['FREE INSURANCE']+
                             GP_df['FLUSH OUT']+
+                            GP_df['SURAY JALAN EV']+
                             GP_df['WS SUBSIDI']+
                             GP_df['VOUCHER GIIAS']+
                             GP_df['BCA / BNI EXPO'])
@@ -396,6 +337,10 @@ def process_gp(file1, file2):
                     GP_df['TOTAL PROGRAM'])-
                     (GP_df['Net Diskon']+
                     GP_df['Total']))
+    
+    GP_df['REVENUE'] = (GP_df['Harga OTR PPU']+
+                        GP_df['TOTAL PROGRAM']-
+                        GP_df['Net Diskon'])
 
     # Define mapping
     mapping2 = {'FATMAWATI': 'CHANDRA', 
@@ -451,12 +396,14 @@ def process_gp(file1, file2):
                         'FREE INSURANCE',
                         'FLUSH OUT',
                         'VOUCHER GIIAS',
+                        'SURAT JALAN EV',
                         'WS SUBSIDI',
                         'BCA / BNI EXPO',
                         'TOTAL PROGRAM',
                         'Nilai Diskon',
                         'Coretan Diskon / SUBVENTION',
                         'Net Diskon',
+                        'REVENUE',
                         'Insentif Sales',
                         'Interest',
                         'PDI',
