@@ -44,6 +44,7 @@ def opex_cabang(opex_file):
         # --- Perform aggregation ---
         # (You can include as many aggregate_columns calls as needed.)
         aggregate_columns(df_trans, '(?i)gaji', 'BY GAJI')
+        aggregate_columns(df_trans, '(?i)tunjangan hari raya', 'BY THR')
         aggregate_columns(df_trans, '(?i)tk', 'BY BPJS TENAGA KERJA')
         aggregate_columns(df_trans, '(?i)kesehatan', 'BY BPJS KESEHATAN')
         aggregate_columns(df_trans, '(?i)lembur', 'BY LEMBUR')
@@ -93,6 +94,7 @@ def opex_cabang(opex_file):
         # Adjust the list below as needed.
         selected_cols = [
             'BY GAJI',
+            'BY THR',
             'BY BPJS TENAGA KERJA',
             'BY BPJS KESEHATAN',
             'BY LEMBUR',
@@ -136,7 +138,6 @@ def opex_cabang(opex_file):
 
         opex_summary = opex_summary.assign(
             **{
-                'BY THR': 0,
                 'BY TUNJ MAKAN': 0,
                 'BY TUNJ TEMPAT TINGGAL': 0,
                 'BY INSENTIF SPV SALES/BM/SM': 0,
