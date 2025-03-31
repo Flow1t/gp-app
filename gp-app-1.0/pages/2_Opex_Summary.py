@@ -70,7 +70,7 @@ def opex_summary(opex_file):
     opex_sum_transpose['Predelivery Inspect'] = opex_transpose['Biaya PDC']
     opex_sum_transpose['Total Selling & Marketing Expense'] = opex_sum_transpose['Selling Incentive'] + opex_sum_transpose['Marketing Expense'] + opex_sum_transpose['Sales Commission'] + opex_sum_transpose['Advertising & Promotions'] + opex_sum_transpose['Shipping Expense'] + opex_sum_transpose['Predelivery Inspect']
 
-    aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)gaji', 'Salary Expense')
+    aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)gaji|tunjangan hari raya', 'Salary Expense')
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)lembur|rekreasi|duka cita', 'Employee Welfare')
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)bpjs', 'Jamsostek & Pension')
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)pemeliharaan|iuran rutin', 'Repair Maintenance')
