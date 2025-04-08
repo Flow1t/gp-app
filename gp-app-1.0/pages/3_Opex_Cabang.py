@@ -69,6 +69,7 @@ def opex_cabang(opex_file):
         aggregate_columns(df_trans, '(?i)telepon|internet', 'BY TELPON & INTERNET')
         aggregate_columns(df_trans, '(?i)air dan gas', 'BY AIR / PDAM')
         aggregate_columns(df_trans, '(?i)iuran rutin', 'BY IPLK')
+        aggregate_columns(df_trans, '(?i)pbb', 'BY PBB')
         aggregate_columns(df_trans, '(?i)perijinan', 'BY PERIZINAN')
         aggregate_columns(df_trans, '(?i)reklame', 'BY PAJAK + REKLAME')
         aggregate_columns(df_trans, '(?i)materai', 'BY MATERAI')
@@ -121,6 +122,7 @@ def opex_cabang(opex_file):
             'BY TELPON & INTERNET',
             'BY AIR / PDAM',
             'BY IPLK',
+            'BY PBB',
             'BY PERIZINAN',
             'BY PAJAK + REKLAME',
             'BY MATERAI',
@@ -146,7 +148,6 @@ def opex_cabang(opex_file):
                 'BY SEWA KENDARAAN': 0,
                 'BY TEST DRIVE': 0,
                 'BY BBM INVENTARIS': 0,
-                'BY PBB': 0,
                 'BY PENYUSUTAN': 0,
                 'BY INTEREST DF': 0,
                 'BY PROVISI': 0,
