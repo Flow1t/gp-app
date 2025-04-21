@@ -78,7 +78,7 @@ def opex_cabang(opex_file):
         aggregate_columns(df_trans, '(?i)kirim dokumen', 'BY KIRIM DOKUMEN')
         aggregate_columns(df_trans, '(?i)konsultan|audit', 'BY TENAGA AHLI')
         aggregate_columns(df_trans, '(?i)rekreasi|duka cita', 'BY DONASI / SUMBANGAN')
-        aggregate_columns(df_trans, '(?i)sewa lain-lain', 'BY LAIN-LAIN')
+        aggregate_columns(df_trans, '(?i)sewa lain-lain|buka puasa', 'BY LAIN-LAIN')
         aggregate_columns(df_trans, '(?i)representasi', 'BY CUSTOMER SERVICE')
         aggregate_columns(df_trans, '(?i)perbaikan alat kantor', 'BY PERBAIKAN / SERVICE AC / ALAT KANTOR')
         # ... (add other aggregation calls as in your original script)
