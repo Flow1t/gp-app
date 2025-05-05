@@ -126,7 +126,7 @@ def process_gp(file1, file2):
 
 
     # Combine all columns containing 'FLEET / NEW YEAR' by summing them
-    df1['SUBSIDI FLEET / WULING NEW YEAR'] = df1.filter(regex='(?i)fleet|new year').sum(axis=1)
+    df1['SUBSIDI FLEET / WULING NEW YEAR'] = df1.filter(regex='(?i)fleet|new year|2025').sum(axis=1)
     columns_to_drop = df1.filter(regex='(?i)fleet|new year').columns
     columns_to_drop = [col for col in columns_to_drop if col != 'SUBSIDI FLEET / WULING NEW YEAR']
     df1.drop(columns=columns_to_drop, inplace=True)
