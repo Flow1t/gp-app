@@ -185,7 +185,7 @@ def process_gp(file1, file2):
     columns_to_drop = [col for col in columns_to_drop if col != 'VOUCHER GIIAS']
     df1.drop(columns=columns_to_drop, inplace=True)
 
-    df1['VOUCHER EV & GIIAS, CASH DISKON/ trade in, EX Factory GAP'] = df1['FREE ELECTRICITY']
+    #df1['VOUCHER EV & GIIAS, CASH DISKON/ trade in, EX Factory GAP'] = df1['FREE ELECTRICITY']
 
 
     df2.rename(columns={'CHASIS': 'NO CHASIS'}, inplace=True)
@@ -196,7 +196,7 @@ def process_gp(file1, file2):
     combined_df = pd.merge(combined_df, ws, on = 'NO CHASIS', how = 'outer')
     combined_df = pd.merge(combined_df, rs, on = 'NO CHASIS', how = 'outer')
 
-    GP_df = combined_df[['NO_x', 'NAMA CABANG_x', 'GROUP KENDARAAN_x', 'Date', 'CUSTOMER_x', 'KOTA_x', 'TYPE_x', 'NO CHASIS', 'YEAR', 'Report Date', 'PRICE LIST', 'SALES PROGRAM', 'SUBSIDI PPN_x', 'SUBSIDI FREE SERVICE', 'SUBSIDI FLEET / WULING NEW YEAR', 'LONG AGING STOCK', 'Special Incentive', 'GROUP CUSTOMER', 'LOYAL CUSTOMER', 'FREE INSURANCE', 'FLUSH OUT', 'SUBSIDI WS', 'DISCOUNT TOTAL', 'INSENTIF', 'PDI', 'ONGKOS KIRIM', 'SURAT JALAN', 'FEE MEDIATOR','AKSESORIS LAIN-LAIN', 'ONGKOS KIRIM KE KONSUMEN', 'CASH/LEASING', 'TENOR', 'REFUND OFFICE_x', 'Kaca Film', 'VOUCHER GIIAS', 'VOUCHER EV & GIIAS, CASH DISKON/ trade in, EX Factory GAP']].rename(
+    GP_df = combined_df[['NO_x', 'NAMA CABANG_x', 'GROUP KENDARAAN_x', 'Date', 'CUSTOMER_x', 'KOTA_x', 'TYPE_x', 'NO CHASIS', 'YEAR', 'Report Date', 'PRICE LIST', 'SALES PROGRAM', 'SUBSIDI PPN_x', 'SUBSIDI FREE SERVICE', 'SUBSIDI FLEET / WULING NEW YEAR', 'LONG AGING STOCK', 'Special Incentive', 'GROUP CUSTOMER', 'LOYAL CUSTOMER', 'FREE INSURANCE', 'FLUSH OUT', 'SUBSIDI WS', 'DISCOUNT TOTAL', 'INSENTIF', 'PDI', 'ONGKOS KIRIM', 'SURAT JALAN', 'FEE MEDIATOR','AKSESORIS LAIN-LAIN', 'ONGKOS KIRIM KE KONSUMEN', 'CASH/LEASING', 'TENOR', 'REFUND OFFICE_x', 'Kaca Film', 'VOUCHER GIIAS']].rename(
         columns={
             'NO_x' : 'No', 
             'NAMA CABANG_x': 'Cabang', 
@@ -236,7 +236,7 @@ def process_gp(file1, file2):
             # 'Dealer Margin 9 %':0.0,
             # 'Dealer Margin 7 %':0.0,
             'SELISIH OTR':0,
-            #'VOUCHER EV & GIIAS, CASH DISKON/ trade in, EX Factory GAP':0,
+            'VOUCHER EV & GIIAS, CASH DISKON/ trade in, EX Factory GAP':0,
             'SUBSIDI EX KTT':0,
             #'VOUCHER GIIAS':0,
             'SURAT JALAN EV':0,
