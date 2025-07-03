@@ -440,8 +440,8 @@ def process_gp(file1, file2):
     GP_df = GP_df.drop_duplicates(subset='No Rangka', keep='first')
 
     jumlah_do = GP_df.pivot_table(index="Merk/Type", columns="Cabang", aggfunc="size", fill_value=0)
-    gp7 = GP_df.pivot_table(index="Merk/Type", columns="Cabang", values="GP 7 %", aggfunc="sum", fill_value=0)
-    gp9 = GP_df.pivot_table(index="Merk/Type", columns="Cabang", values="GP 9 %", aggfunc="sum", fill_value=0)
+    gp7 = GP_df.pivot_table(index="Merk/Type", columns="Cabang", values="GP 7 %", aggfunc="sum", fill_value=0)/1000
+    gp9 = GP_df.pivot_table(index="Merk/Type", columns="Cabang", values="GP 9 %", aggfunc="sum", fill_value=0)/1000
     refund = GP_df.pivot_table(index="Type Mobil", columns="Cabang", values="REFUND YANG MASUK REK OFFICE", aggfunc="sum", fill_value=0)/1000
     gp_kredit = GP_df.copy()
     gp_kredit['CASH / KREDIT'] = np.where(
