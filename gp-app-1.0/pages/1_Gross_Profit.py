@@ -252,7 +252,7 @@ def process_gp(file1, file2):
             'Tambahan Biaya BBN':0,
             'Total':0,
             'REFUND ASURANSI  (TGL TERIMA)':'',
-            'REFUND YANG MASUK REK OFFICE': GP_df['REFUND ASURANSI (PPU)']/1.11,
+            'REFUND YANG MASUK REK OFFICE': GP_df['REFUND ASURANSI (PPU)']/1.12,
             'GP 7 %':0,
             'GP 9 %':0,
             'TOTAL PROGRAM':0,
