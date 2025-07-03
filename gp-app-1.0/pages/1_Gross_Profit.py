@@ -491,7 +491,7 @@ def process_gp(file1, file2):
         "CONFERO",
         "CORTEZ",
         "ALMAZ",
-        "AIR EV",
+        "AIREV",
         "ALVEZ",
         "BINGUO",
         "CLOUD"
