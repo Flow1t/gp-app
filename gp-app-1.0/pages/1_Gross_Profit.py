@@ -112,7 +112,7 @@ def process_gp(file1, file2):
     df1["FREE INSURANCE"] = df1.filter(regex='(?i)free insurance').sum(axis=1)
 
     # Combine all columns containing 'SURAT' by summing them (Insentif Surat Jalan)
-    #df1['SURAT JALAN EV'] = df1['SURAT JALAN']
+    df1['SURAT JALAN EV'] = df1['SURAT JALAN']
     #columns_to_drop = df1.filter(regex='(?i)surat jalan|ev lite').columns
     #columns_to_drop = [col for col in columns_to_drop if col != 'SURAT JALAN EV']
     #df1.drop(columns=columns_to_drop, inplace=True)
@@ -162,7 +162,7 @@ def process_gp(file1, file2):
     df1.drop(columns=columns_to_drop, inplace=True)
 
     # Combine all columns containing 'maintenance' by summing them
-    df1['SUBSIDI FREE SERVICE'] = df1.filter(regex='(?i)maintenance').sum(axis=1)
+    df1['SUBSIDI FREE SERVICE'] = df1.filter(regex='(?i)maintenance|free service').sum(axis=1)
     columns_to_drop = df1.filter(regex='(?i)maintenance').columns
     columns_to_drop = [col for col in columns_to_drop if col != 'SUBSIDI FREE SERVICE']
     df1.drop(columns=columns_to_drop, inplace=True)
@@ -180,12 +180,12 @@ def process_gp(file1, file2):
     df1.drop(columns=columns_to_drop, inplace=True)
 
     # Combine all columns containing 'voucher' by summing them
-    df1['VOUCHER GIIAS'] = df1.filter(regex='(?i)voucher').sum(axis=1)
-    columns_to_drop = df1.filter(regex='(?i)voucher').columns
+    df1['VOUCHER GIIAS'] = df1.filter(regex='(?i)shopping voucher').sum(axis=1)
+    columns_to_drop = df1.filter(regex='(?i)shopping voucher').columns
     columns_to_drop = [col for col in columns_to_drop if col != 'VOUCHER GIIAS']
     df1.drop(columns=columns_to_drop, inplace=True)
 
-    #df1['VOUCHER EV & GIIAS, CASH DISKON/ trade in, EX Factory GAP'] = df1['FREE ELECTRICITY']
+    df1['VOUCHER EV & GIIAS, CASH DISKON/ trade in, EX Factory GAP'] = filter(regex='(?i)electricity voucher|gasoline voucher').sum(axis=1)
 
 
     df2.rename(columns={'CHASIS': 'NO CHASIS'}, inplace=True)
@@ -196,7 +196,7 @@ def process_gp(file1, file2):
     combined_df = pd.merge(combined_df, ws, on = 'NO CHASIS', how = 'outer')
     combined_df = pd.merge(combined_df, rs, on = 'NO CHASIS', how = 'outer')
 
-    GP_df = combined_df[['NO_x', 'NAMA CABANG_x', 'GROUP KENDARAAN_x', 'Date', 'CUSTOMER_x', 'KOTA_x', 'TYPE_x', 'NO CHASIS', 'YEAR', 'Report Date', 'PRICE LIST', 'SALES PROGRAM', 'SUBSIDI PPN_x', 'SUBSIDI FREE SERVICE', 'SUBSIDI FLEET / WULING NEW YEAR', 'LONG AGING STOCK', 'Special Incentive', 'GROUP CUSTOMER', 'LOYAL CUSTOMER', 'FREE INSURANCE', 'FLUSH OUT', 'SUBSIDI WS', 'DISCOUNT TOTAL', 'INSENTIF', 'PDI', 'ONGKOS KIRIM', 'SURAT JALAN', 'FEE MEDIATOR','AKSESORIS LAIN-LAIN', 'ONGKOS KIRIM KE KONSUMEN', 'CASH/LEASING', 'TENOR', 'REFUND OFFICE_x', 'Kaca Film', 'VOUCHER GIIAS']].rename(
+    GP_df = combined_df[['NO_x', 'NAMA CABANG_x', 'GROUP KENDARAAN_x', 'Date', 'CUSTOMER_x', 'KOTA_x', 'TYPE_x', 'NO CHASIS', 'YEAR', 'Report Date', 'PRICE LIST', 'SALES PROGRAM', 'SUBSIDI PPN_x', 'SUBSIDI FREE SERVICE', 'SUBSIDI FLEET / WULING NEW YEAR', 'LONG AGING STOCK', 'Special Incentive', 'GROUP CUSTOMER', 'LOYAL CUSTOMER', 'FREE INSURANCE', 'FLUSH OUT', 'SUBSIDI WS', 'DISCOUNT TOTAL', 'INSENTIF', 'PDI', 'ONGKOS KIRIM', 'SURAT JALAN', 'FEE MEDIATOR','AKSESORIS LAIN-LAIN', 'ONGKOS KIRIM KE KONSUMEN', 'CASH/LEASING', 'TENOR', 'REFUND OFFICE_x', 'Kaca Film', 'VOUCHER GIIAS', 'SURAT JALAN EV', 'VOUCHER GIIAS']].rename(
         columns={
             'NO_x' : 'No', 
             'NAMA CABANG_x': 'Cabang', 
@@ -236,10 +236,10 @@ def process_gp(file1, file2):
             # 'Dealer Margin 9 %':0.0,
             # 'Dealer Margin 7 %':0.0,
             'SELISIH OTR':0,
-            'VOUCHER EV & GIIAS, CASH DISKON/ trade in, EX Factory GAP':0,
+            #'VOUCHER EV & GIIAS, CASH DISKON/ trade in, EX Factory GAP':0,
             'SUBSIDI EX KTT':0,
             #'VOUCHER GIIAS':0,
-            'SURAT JALAN EV':0,
+            #'SURAT JALAN EV':0,
             'BCA / BNI EXPO':0,
             'TOTAL PROGRAM':0,
             'Coretan Diskon / SUBVENTION':0,
