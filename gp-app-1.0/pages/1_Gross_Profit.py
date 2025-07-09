@@ -196,7 +196,7 @@ def process_gp(file1, file2):
     combined_df = pd.merge(combined_df, ws, on = 'NO CHASIS', how = 'outer')
     combined_df = pd.merge(combined_df, rs, on = 'NO CHASIS', how = 'outer')
 
-    GP_df = combined_df[['NO_x', 'NAMA CABANG_x', 'GROUP KENDARAAN_x', 'Date', 'CUSTOMER_x', 'KOTA_x', 'TYPE_x', 'NO CHASIS', 'YEAR', 'Report Date', 'PRICE LIST', 'SALES PROGRAM', 'SUBSIDI PPN_x', 'SUBSIDI FREE SERVICE', 'SUBSIDI FLEET / WULING NEW YEAR', 'LONG AGING STOCK', 'Special Incentive', 'GROUP CUSTOMER', 'LOYAL CUSTOMER', 'FREE INSURANCE', 'FLUSH OUT', 'SUBSIDI WS', 'DISCOUNT TOTAL', 'INSENTIF', 'PDI', 'ONGKOS KIRIM', 'SURAT JALAN', 'FEE MEDIATOR','AKSESORIS LAIN-LAIN', 'ONGKOS KIRIM KE KONSUMEN', 'CASH/LEASING', 'TENOR', 'REFUND OFFICE_x', 'Kaca Film','SURAT JALAN EV', 'VOUCHER GIIAS', 'VOUCHER EV & GIIAS, CASH DISKON/ trade in, EX Factory GAP', 'SPV']].rename(
+    GP_df = combined_df[['NO_x', 'NAMA CABANG_x', 'GROUP KENDARAAN_x', 'Date', 'CUSTOMER_x', 'KOTA_x', 'TYPE_x', 'NO CHASIS', 'YEAR', 'Report Date', 'PRICE LIST', 'SALES PROGRAM', 'SUBSIDI PPN_x', 'SUBSIDI FREE SERVICE', 'SUBSIDI FLEET / WULING NEW YEAR', 'LONG AGING STOCK', 'Special Incentive', 'GROUP CUSTOMER', 'LOYAL CUSTOMER', 'FREE INSURANCE', 'FLUSH OUT', 'SUBSIDI WS', 'DISCOUNT TOTAL', 'INSENTIF', 'PDI', 'ONGKOS KIRIM', 'SURAT JALAN', 'FEE MEDIATOR','AKSESORIS LAIN-LAIN', 'ONGKOS KIRIM KE KONSUMEN', 'CASH/LEASING', 'TENOR', 'REFUND OFFICE_x', 'Kaca Film','SURAT JALAN EV', 'VOUCHER GIIAS', 'VOUCHER EV & GIIAS, CASH DISKON/ trade in, EX Factory GAP', 'SPV_x']].rename(
         columns={
             'NO_x' : 'No', 
             'NAMA CABANG_x': 'Cabang', 
