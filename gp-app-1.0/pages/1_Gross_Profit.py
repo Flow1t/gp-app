@@ -168,7 +168,7 @@ def process_gp(file1, file2):
     df1.drop(columns=columns_to_drop, inplace=True)
 
     # Combine all columns containing 'poles|repair' by summing them
-    df1['AKSESORIS LAIN-LAIN'] = df1.filter(regex='(?i)poles|repair').sum(axis=1)
+    df1['AKSESORIS LAIN-LAIN'] = df1.filter(regex='(?i)poles|repair|shopping voucher').sum(axis=1)
     columns_to_drop = df1.filter(regex='(?i)poles|repair').columns
     columns_to_drop = [col for col in columns_to_drop if col != 'AKSESORIS LAIN-LAIN']
     df1.drop(columns=columns_to_drop, inplace=True)
@@ -196,7 +196,7 @@ def process_gp(file1, file2):
     combined_df = pd.merge(combined_df, ws, on = 'NO CHASIS', how = 'outer')
     combined_df = pd.merge(combined_df, rs, on = 'NO CHASIS', how = 'outer')
 
-    GP_df = combined_df[['NO_x', 'NAMA CABANG_x', 'GROUP KENDARAAN_x', 'Date', 'CUSTOMER_x', 'KOTA_x', 'TYPE_x', 'NO CHASIS', 'YEAR', 'Report Date', 'PRICE LIST', 'SALES PROGRAM', 'SUBSIDI PPN_x', 'SUBSIDI FREE SERVICE', 'SUBSIDI FLEET / WULING NEW YEAR', 'LONG AGING STOCK', 'Special Incentive', 'GROUP CUSTOMER', 'LOYAL CUSTOMER', 'FREE INSURANCE', 'FLUSH OUT', 'SUBSIDI WS', 'DISCOUNT TOTAL', 'INSENTIF', 'PDI', 'ONGKOS KIRIM', 'SURAT JALAN', 'FEE MEDIATOR','AKSESORIS LAIN-LAIN', 'ONGKOS KIRIM KE KONSUMEN', 'CASH/LEASING', 'TENOR', 'REFUND OFFICE_x', 'Kaca Film','SURAT JALAN EV', 'VOUCHER GIIAS', 'VOUCHER EV & GIIAS, CASH DISKON/ trade in, EX Factory GAP']].rename(
+    GP_df = combined_df[['NO_x', 'NAMA CABANG_x', 'GROUP KENDARAAN_x', 'Date', 'CUSTOMER_x', 'KOTA_x', 'TYPE_x', 'NO CHASIS', 'YEAR', 'Report Date', 'PRICE LIST', 'SALES PROGRAM', 'SUBSIDI PPN_x', 'SUBSIDI FREE SERVICE', 'SUBSIDI FLEET / WULING NEW YEAR', 'LONG AGING STOCK', 'Special Incentive', 'GROUP CUSTOMER', 'LOYAL CUSTOMER', 'FREE INSURANCE', 'FLUSH OUT', 'SUBSIDI WS', 'DISCOUNT TOTAL', 'INSENTIF', 'PDI', 'ONGKOS KIRIM', 'SURAT JALAN', 'FEE MEDIATOR','AKSESORIS LAIN-LAIN', 'ONGKOS KIRIM KE KONSUMEN', 'CASH/LEASING', 'TENOR', 'REFUND OFFICE_x', 'Kaca Film','SURAT JALAN EV', 'VOUCHER GIIAS', 'VOUCHER EV & GIIAS, CASH DISKON/ trade in, EX Factory GAP', 'SPV']].rename(
         columns={
             'NO_x' : 'No', 
             'NAMA CABANG_x': 'Cabang', 
@@ -220,7 +220,8 @@ def process_gp(file1, file2):
             'FEE MEDIATOR' : 'MEDIATOR', 
             'ONGKOS KIRIM KE KONSUMEN' : 'BIAYA TAMBAHAN ONGKIR',
             'CASH/LEASING' : 'CASH / KREDIT', 
-            'REFUND OFFICE_x' : 'REFUND ASURANSI (PPU)'
+            'REFUND OFFICE_x' : 'REFUND ASURANSI (PPU)',
+            'SPV': 'PIC'
         }
     )
 
@@ -259,7 +260,7 @@ def process_gp(file1, file2):
             'PIC':'',
             'Subsidi Discount OTR':'',
             'Interest':'',
-            'PIC':'',
+            #'PIC':'',
             'DO Bulan': ''
         } 
     )
@@ -347,22 +348,22 @@ def process_gp(file1, file2):
                         GP_df['Net Diskon'])
 
     # Define mapping
-    mapping2 = {'FATMAWATI': 'CHANDRA', 
-            'CIBUBUR': 'ERWIN S INDRAWAN', 
-            'DAANMOGOT': 'SUWANDI',
-            'SERPONG RAYA': 'IIN AWAN',
-            'CIKUPA': 'MAHAJI',
-            'KUPANG': 'MENDY',
-            'KEBONJERUK': 'RUBBY LIE',
-            'HARMONI': 'RACHELLA SARI CIPTADI',
-            'GRESIK': 'ARRYA YUDHIANTO',
-            'MADIUN': 'ARMAN BARDI',
-            'MOJOKERTO': 'VICTOR YUDHA P',
-            'TAJUR': 'ANANG R.',
-            'KERTAJAYA': 'IVAN KURNIAWAN'}
+    # mapping2 = {'FATMAWATI': 'CHANDRA', 
+    #         'CIBUBUR': 'ERWIN S INDRAWAN', 
+    #         'DAANMOGOT': 'SUWANDI',
+    #         'SERPONG RAYA': 'IIN AWAN',
+    #         'CIKUPA': 'MAHAJI',
+    #         'KUPANG': 'MENDY',
+    #         'KEBONJERUK': 'RUBBY LIE',
+    #         'HARMONI': 'RACHELLA SARI CIPTADI',
+    #         'GRESIK': 'ARRYA YUDHIANTO',
+    #         'MADIUN': 'ARMAN BARDI',
+    #         'MOJOKERTO': 'VICTOR YUDHA P',
+    #         'TAJUR': 'ANANG R.',
+    #         'KERTAJAYA': 'IVAN KURNIAWAN'}
 
-    # Fill column1 based on column2 values
-    GP_df['PIC'] = GP_df['Cabang'].map(mapping2)
+    # # Fill column1 based on column2 values
+    # GP_df['PIC'] = GP_df['Cabang'].map(mapping2)
 
 
     new_column_order = ['No',
