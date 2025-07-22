@@ -257,10 +257,8 @@ def process_gp(file1, file2):
             'GP 7 %':0,
             'GP 9 %':0,
             'TOTAL PROGRAM':0,
-            'PIC':'',
             'Subsidi Discount OTR':'',
             'Interest':'',
-            #'PIC':'',
             'DO Bulan': ''
         } 
     )
