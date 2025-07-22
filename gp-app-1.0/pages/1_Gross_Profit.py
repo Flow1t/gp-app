@@ -221,7 +221,7 @@ def process_gp(file1, file2):
             'ONGKOS KIRIM KE KONSUMEN' : 'BIAYA TAMBAHAN ONGKIR',
             'CASH/LEASING' : 'CASH / KREDIT', 
             'REFUND OFFICE_x' : 'REFUND ASURANSI (PPU)',
-            'SPV': 'PIC'
+            'SPV_x': 'PIC'
         }
     )
 
