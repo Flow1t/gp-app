@@ -168,7 +168,7 @@ def process_gp(file1, file2):
     df1.drop(columns=columns_to_drop, inplace=True)
 
     # Combine all columns containing 'poles|repair' by summing them
-    df1['AKSESORIS LAIN-LAIN'] = df1.filter(regex='(?i)poles|repair|shopping voucher|electricity voucher|gasoline voucher').sum(axis=1)
+    df1['AKSESORIS LAIN-LAIN'] = df1.filter(regex='(?i)poles|repair|shopping voucher|electricity voucher|gasoline voucher|shoping voucher').sum(axis=1)
     columns_to_drop = df1.filter(regex='(?i)poles|repair').columns
     columns_to_drop = [col for col in columns_to_drop if col != 'AKSESORIS LAIN-LAIN']
     df1.drop(columns=columns_to_drop, inplace=True)
@@ -180,7 +180,7 @@ def process_gp(file1, file2):
     df1.drop(columns=columns_to_drop, inplace=True)
 
     # Combine all columns containing 'voucher' by summing them
-    df1['VOUCHER GIIAS'] = df1.filter(regex='(?i)shopping voucher').sum(axis=1)
+    df1['VOUCHER GIIAS'] = df1.filter(regex='(?i)shopping voucher|shoping').sum(axis=1)
     columns_to_drop = df1.filter(regex='(?i)shopping voucher').columns
     columns_to_drop = [col for col in columns_to_drop if col != 'VOUCHER GIIAS']
     df1.drop(columns=columns_to_drop, inplace=True)
