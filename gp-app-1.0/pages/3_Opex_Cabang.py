@@ -48,6 +48,7 @@ def opex_cabang(opex_file):
         aggregate_columns(df_trans, '(?i)tk', 'BY BPJS TENAGA KERJA')
         aggregate_columns(df_trans, '(?i)kesehatan', 'BY BPJS KESEHATAN')
         aggregate_columns(df_trans, '(?i)lembur', 'BY LEMBUR')
+        aggregate_columns(df_trans, '(?i)promosi|pameran|iklan|brosur|spanduk|showroom event|', 'BY MARKETING')
         aggregate_columns(df_trans, '(?i)keamanan', 'BY SECURITY')
         aggregate_columns(df_trans, '(?i)kebersihan', 'BY CLEANING SERVICE')
         aggregate_columns(df_trans, '(?i)bbm|transport', 'BY DO KIRIM UNIT')
@@ -99,6 +100,7 @@ def opex_cabang(opex_file):
             'BY BPJS TENAGA KERJA',
             'BY BPJS KESEHATAN',
             'BY LEMBUR',
+            'BY MARKETING',
             'BY SECURITY',
             'BY CLEANING SERVICE',
             'BY DO KIRIM UNIT',
@@ -162,6 +164,7 @@ def opex_cabang(opex_file):
                         'BY BPJS TENAGA KERJA',
                         'BY BPJS KESEHATAN',
                         'BY TUNJ TEMPAT TINGGAL',
+                        'BY MARKETING',
                         'BY LEMBUR',
                         'BY SECURITY',
                         'BY CLEANING SERVICE',
