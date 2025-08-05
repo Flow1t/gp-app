@@ -48,7 +48,7 @@ def opex_cabang(opex_file):
         aggregate_columns(df_trans, '(?i)tk', 'BY BPJS TENAGA KERJA')
         aggregate_columns(df_trans, '(?i)kesehatan', 'BY BPJS KESEHATAN')
         aggregate_columns(df_trans, '(?i)lembur', 'BY LEMBUR')
-        aggregate_columns(df_trans, '(?i)promosi|pameran|iklan|brosur|spanduk|showroom event|', 'BY MARKETING')
+        aggregate_columns(df_trans, '(?i)promosi|pameran|iklan|brosur|spanduk|showroom event', 'BY MARKETING')
         aggregate_columns(df_trans, '(?i)keamanan', 'BY SECURITY')
         aggregate_columns(df_trans, '(?i)kebersihan', 'BY CLEANING SERVICE')
         aggregate_columns(df_trans, '(?i)bbm|transport', 'BY DO KIRIM UNIT')
