@@ -4,3 +4,4 @@ numpy
 openpyxl
 xlsxwriter
 streamlit_option_menu
+PIL
