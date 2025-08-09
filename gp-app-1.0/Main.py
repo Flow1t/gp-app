@@ -1,13 +1,16 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
 import os
+from PIL import Image
 
-# Page config
+logo = Image.open(r"D:\gp-app\gp-app-1.0\logo_wuling.png")
+
 st.set_page_config(
     page_title="Wuling GP App",
-    page_icon="📊",
+    page_icon=logo,
     layout="wide"
 )
+
 
 # Custom CSS
 st.markdown("""
