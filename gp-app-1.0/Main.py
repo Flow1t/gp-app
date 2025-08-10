@@ -3,11 +3,10 @@ from streamlit_option_menu import option_menu
 import os
 from PIL import Image
 
-logo = Image.open(r"D:\gp-app\gp-app-1.0\logo_wuling.png")
-
+# Page config
 st.set_page_config(
     page_title="Wuling GP App",
-    page_icon=logo,
+    page_icon="📊",
     layout="wide"
 )
 
