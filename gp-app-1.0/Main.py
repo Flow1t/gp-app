@@ -1,30 +1,54 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
 import os
-from PIL import Image
 
-logo = Image.open(r"D:\gp-app\gp-app-1.0\logo_wuling.png")
-
+# Page config
 st.set_page_config(
     page_title="Wuling GP App",
-    page_icon=logo,
+    page_icon="D:\gp-app\gp-app-1.0\logo_wuling.png",
     layout="wide"
 )
-
 
 # Custom CSS
 st.markdown("""
 <style>
-    .main-title { font-size: 36px; font-weight: bold; color: #FF4B4B; }
-    .sub-title { font-size: 18px; color: #555; margin-bottom: 20px; }
-    .uploaded-file { font-size: 14px; color: #2e7d32; margin-top: -10px; }
-    .stDownloadButton > button {
-        background-color: #FF4B4B; 
-        color: white; 
-        font-size: 16px; 
-        padding: 10px 20px;
-        border-radius: 8px;
-    }
+/* Sidebar */
+[data-testid="stSidebar"] {
+    background: rgba(30, 30, 30, 0.85);
+    backdrop-filter: blur(10px);
+    border-right: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Sidebar menu items */
+[data-testid="stSidebar"] .css-1lcbmhc {
+    transition: all 0.3s ease;
+}
+[data-testid="stSidebar"] .css-1lcbmhc:hover {
+    transform: scale(1.02);
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+}
+
+/* Headings */
+h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+/* Buttons */
+button {
+    border-radius: 20px !important;
+    transition: all 0.3s ease;
+}
+button:hover {
+    transform: scale(1.05);
+}
+
+/* Cards */
+.block-container {
+    padding-top: 2rem;
+}
 </style>
 """, unsafe_allow_html=True)
 
