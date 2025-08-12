@@ -5,7 +5,7 @@ import os
 # Page config
 st.set_page_config(
     page_title="Wuling GP App",
-    page_icon=logo,
+    page_icon="📊",
     layout="wide"
 )
 
