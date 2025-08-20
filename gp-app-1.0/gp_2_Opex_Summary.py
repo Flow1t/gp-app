@@ -92,12 +92,13 @@ def opex_summary(opex_file):
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)perijinan', 'Claim Expense')
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)buka puasa', 'Miscellanous')
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)provisi|credit|transfer', 'Bank Charge')
+    aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)amortisasi', 'Amortization Expense')
 
     opex_sum_transpose['Total General & Administratif Expense'] = opex_sum_transpose['Salary Expense'] + opex_sum_transpose['Employee Welfare'] + opex_sum_transpose ['Jamsostek & Pension'] + opex_sum_transpose['Repair Maintenance'] + opex_sum_transpose ['Tools'] + opex_sum_transpose['Rent Expense'] + opex_sum_transpose['Entertainment & Representation Expense'] + opex_sum_transpose['Utilities Expense'] + opex_sum_transpose['Communication Expense'] + opex_sum_transpose['Transportation & Travelling Expense'] + opex_sum_transpose['Insurance Expense'] + opex_sum_transpose['Training Expense'] + opex_sum_transpose['Taxes License'] + opex_sum_transpose['Office Supplies'] + opex_sum_transpose['IT Expense'] + opex_sum_transpose['Security & Cleaning Expense'] + opex_sum_transpose['Recruitment'] + opex_sum_transpose['Uniform'] + opex_sum_transpose['Claim Expense'] + opex_sum_transpose['Bank Charge'] + opex_sum_transpose['Professional Fee'] + opex_sum_transpose['Miscellanous']
 
     opex_sum_transpose['Total Operational Expense'] = opex_sum_transpose['Total Selling & Marketing Expense'] + opex_sum_transpose['Total General & Administratif Expense']
 
-    opex_sum_transpose['EBIT'] = opex_sum_transpose['Total Gross Profit'] - opex_sum_transpose['Total Operational Expense']
+    opex_sum_transpose['EBIT'] = opex_sum_transpose['Total Gross Profit'] - opex_sum_transpose['Total Operational Expense'] - opex_sum_transpose['Amortization Expense']
 
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)giro|deposito|Pendapatan Lain Rupa-Rupa', 'Interest Income/Expense Bank')
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)dealer financing|biaya bunga bank', 'Interest Expense and Other Financial Charges')
