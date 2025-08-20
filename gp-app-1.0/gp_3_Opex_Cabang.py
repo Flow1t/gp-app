@@ -47,6 +47,7 @@ def opex_cabang(opex_file):
         aggregate_columns(df_trans, '(?i)tunjangan hari raya', 'BY THR')
         aggregate_columns(df_trans, '(?i)tk', 'BY BPJS TENAGA KERJA')
         aggregate_columns(df_trans, '(?i)kesehatan', 'BY BPJS KESEHATAN')
+        aggregate_columns(df_trans, '(?i)amortisasi', 'BY AMORTISASI PRA OPERASI')
         aggregate_columns(df_trans, '(?i)lembur', 'BY LEMBUR')
         aggregate_columns(df_trans, '(?i)promosi|pameran|iklan|brosur|spanduk|showroom event', 'BY MARKETING')
         aggregate_columns(df_trans, '(?i)keamanan', 'BY SECURITY')
@@ -72,16 +73,19 @@ def opex_cabang(opex_file):
         aggregate_columns(df_trans, '(?i)iuran rutin', 'BY IPLK')
         aggregate_columns(df_trans, '(?i)pbb', 'BY PBB')
         aggregate_columns(df_trans, '(?i)perijinan', 'BY PERIZINAN')
-        aggregate_columns(df_trans, '(?i)reklame', 'BY PAJAK + REKLAME')
+        aggregate_columns(df_trans, '(?i)reklame|biaya pajak', 'BY PAJAK + REKLAME')
         aggregate_columns(df_trans, '(?i)materai', 'BY MATERAI')
         aggregate_columns(df_trans, '(?i)website', 'BY IT')
-        aggregate_columns(df_trans, '(?i)provisi|credit', 'BY ADM BANK')
+        aggregate_columns(df_trans, '(?i)credit|administrasi|transfer', 'BY ADM BANK')
         aggregate_columns(df_trans, '(?i)kirim dokumen', 'BY KIRIM DOKUMEN')
         aggregate_columns(df_trans, '(?i)konsultan|audit', 'BY TENAGA AHLI')
-        aggregate_columns(df_trans, '(?i)rekreasi|duka cita', 'BY DONASI / SUMBANGAN')
-        aggregate_columns(df_trans, '(?i)sewa lain-lain|buka puasa', 'BY LAIN-LAIN')
-        aggregate_columns(df_trans, '(?i)representasi', 'BY CUSTOMER SERVICE')
+        aggregate_columns(df_trans, '(?i)rekreasi|duka cita|sumbangan|tunjangan lainnya|pernikahan', 'BY DONASI / SUMBANGAN')
+        aggregate_columns(df_trans, '(?i)sewa lain-lain|buka puasa|penjualan lainnya', 'BY LAIN-LAIN')
+        aggregate_columns(df_trans, '(?i)representasi|goodwill', 'BY CUSTOMER SERVICE')
         aggregate_columns(df_trans, '(?i)perbaikan alat kantor', 'BY PERBAIKAN / SERVICE AC / ALAT KANTOR')
+        aggregate_columns(df_trans, '(?i)insentif reguler', 'BY BY INSENTIF SPV SALES/BM/SM')
+        aggregate_columns(df_trans, '(?i)provisi', 'BY PROVISI')
+        aggregate_columns(df_trans, '(?i)penyusutan', 'BY PENYUSUTAN')
         # ... (add other aggregation calls as in your original script)
         
         # Convert any aggregated column (if needed) to numeric and then to integer.
@@ -99,6 +103,7 @@ def opex_cabang(opex_file):
             'BY THR',
             'BY BPJS TENAGA KERJA',
             'BY BPJS KESEHATAN',
+            'BY AMORTISASI PRA OPERASI',
             'BY LEMBUR',
             'BY MARKETING',
             'BY SECURITY',
@@ -110,6 +115,7 @@ def opex_cabang(opex_file):
             'BY ATK', 
             'BY CAFETARIA',
             'BY CUSTOMER SERVICE',
+            'BY INSENTIF SPV SALES/BM/SM',
             'BY MEETING',
             'BY TRAINING / SPD',
             'BY PERBAIKAN / SERVICE AC / ALAT KANTOR',
@@ -133,7 +139,9 @@ def opex_cabang(opex_file):
             'BY KIRIM DOKUMEN',
             'BY TENAGA AHLI',
             'BY DONASI / SUMBANGAN',
-            'BY LAIN-LAIN'
+            'BY LAIN-LAIN',
+            'BY PROVISI',
+            'BY PENYUSUTAN'
             # ... add other aggregated column names here
         ]
         # Make sure to include only columns that exist in df_trans
@@ -142,17 +150,17 @@ def opex_cabang(opex_file):
 
         opex_summary = opex_summary.assign(
             **{
-                'BY TUNJ MAKAN': 0,
+                #'BY TUNJ MAKAN': 0,
                 'BY TUNJ TEMPAT TINGGAL': 0,
-                'BY INSENTIF SPV SALES/BM/SM': 0,
+                #'BY INSENTIF SPV SALES/BM/SM': 0,
                 'BY INSENTIF AFTER SALES': 0,
                 'BY SEWA GEDUNG': 0,
                 'BY SEWA KENDARAAN': 0,
                 'BY TEST DRIVE': 0,
                 'BY BBM INVENTARIS': 0,
-                'BY PENYUSUTAN': 0,
+                #'BY PENYUSUTAN': 0,
                 'BY INTEREST DF': 0,
-                'BY PROVISI': 0,
+                #'BY PROVISI': 0,
                 'BY INTEREST AGING UNIT': 0,
                 'TOTAL BIAYA OPEX': 0
             }
@@ -163,7 +171,7 @@ def opex_cabang(opex_file):
                         'BY THR',
                         'BY BPJS TENAGA KERJA',
                         'BY BPJS KESEHATAN',
-                        'BY TUNJ TEMPAT TINGGAL',
+                        'BY AMORTISASI PRA OPERASI',
                         'BY MARKETING',
                         'BY LEMBUR',
                         'BY SECURITY',
