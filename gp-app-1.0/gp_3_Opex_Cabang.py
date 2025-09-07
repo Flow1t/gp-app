@@ -83,7 +83,7 @@ def opex_cabang(opex_file):
         aggregate_columns(df_trans, '(?i)sewa lain-lain|buka puasa|penjualan lainnya', 'BY LAIN-LAIN')
         aggregate_columns(df_trans, '(?i)representasi|goodwill', 'BY CUSTOMER SERVICE')
         aggregate_columns(df_trans, '(?i)perbaikan alat kantor', 'BY PERBAIKAN / SERVICE AC / ALAT KANTOR')
-        aggregate_columns(df_trans, '(?i)insentif reguler', 'BY BY INSENTIF SPV SALES/BM/SM')
+        aggregate_columns(df_trans, '(?i)insentif reguler', 'BY INSENTIF SPV SALES/BM/SM')
         aggregate_columns(df_trans, '(?i)provisi', 'BY PROVISI')
         aggregate_columns(df_trans, '(?i)penyusutan', 'BY PENYUSUTAN')
         # ... (add other aggregation calls as in your original script)
@@ -150,7 +150,7 @@ def opex_cabang(opex_file):
 
         opex_summary = opex_summary.assign(
             **{
-                #'BY TUNJ MAKAN': 0,
+                'BY TUNJ MAKAN': 0,
                 'BY TUNJ TEMPAT TINGGAL': 0,
                 #'BY INSENTIF SPV SALES/BM/SM': 0,
                 'BY INSENTIF AFTER SALES': 0,
