@@ -65,7 +65,7 @@ def opex_summary(opex_file):
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)insentif', 'Selling Incentive')
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)brosur|spanduk|event|promosi', 'Marketing Expense')
     opex_sum_transpose['Sales Commission'] = opex_transpose['Biaya Komisi Penjualan']
-    aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)pameran|iklan', 'Advertising & Promotions')
+    aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)pameran|iklan', 'Advertising & Promotions') #Double dengan Iklan Lowongan
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)bbm|transport|logistik|Biaya Perlengkapan Kendaraan|biaya penjualan lainnya|surat kendaraan', 'Shipping Expense')
     opex_sum_transpose['Predelivery Inspect'] = opex_transpose['Biaya PDC']
     opex_sum_transpose['Total Selling & Marketing Expense'] = opex_sum_transpose['Selling Incentive'] + opex_sum_transpose['Marketing Expense'] + opex_sum_transpose['Sales Commission'] + opex_sum_transpose['Advertising & Promotions'] + opex_sum_transpose['Shipping Expense'] + opex_sum_transpose['Predelivery Inspect']
@@ -84,7 +84,7 @@ def opex_summary(opex_file):
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)asuransi', 'Insurance Expense')
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)training', 'Training Expense')
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)reklame|materai|pbb', 'Taxes License')
-    aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)perlengkapan kantor|fotocopy|alat kantor', 'Office Supplies')
+    aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)perlengkapan kantor|fotocopy', 'Office Supplies') #Alat kantor dibuang biar gk double dengan pemeliharaan
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)website', 'IT Expense')
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)psikotest|lowongan', 'Recruitment')
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)seragam', 'Uniform')
