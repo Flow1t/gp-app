@@ -105,7 +105,7 @@ def opex_summary(opex_file):
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)stnk', 'Other Income/Charges BBN & STNK')
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)selisih', 'Other Income/Charges Price Difference')
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)atpm|refund leasing|aktiva', 'Other Income/Charges Others')
-    aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)skp|stp', 'Other Income/Charge Tax Assets Penalty Taxes')
+    aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)skp|biaya pajak', 'Other Income/Charge Tax Assets Penalty Taxes')
 
 
     opex_sum_transpose['Total Other Income/ Expenses'] = opex_sum_transpose['Interest Expense and Other Financial Charges'] + opex_sum_transpose['Other Income/Charge Tax Assets Penalty Taxes'] + opex_sum_transpose['Other Income/Charges BBN & STNK'] + opex_sum_transpose['Other Income/Charges Price Difference'] + opex_sum_transpose['Other Income/Charges Others'] + opex_sum_transpose['Interest Income/Expense Bank']
