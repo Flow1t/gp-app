@@ -31,8 +31,23 @@ else:
 
 # also inject a favicon link (works around some browsers) using base64
 if logo_bytes:
-    b64 = base64.b64encode(logo_bytes).decode()
-    favicon_html = f'<link rel="icon" type="image/png" href="data:image/png;base64,{b64}" sizes="32x32" />'
+    from io import BytesIO
+    import base64
+
+    # original bytes (fallback)
+    b64_orig = base64.b64encode(logo_bytes).decode()
+
+    # create a 48x48 PNG for favicon
+    buf = BytesIO()
+    img = Image.open(BytesIO(logo_bytes)).convert("RGBA")
+    favicon_img = img.resize((48, 48), Image.LANCZOS)
+    favicon_img.save(buf, format="PNG")
+    b64_48 = base64.b64encode(buf.getvalue()).decode()
+
+    favicon_html = (
+        f'<link rel="icon" type="image/png" sizes="48x48" href="data:image/png;base64,{b64_48}" />'
+        f'<link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,{b64_orig}" />'
+    )
     st.markdown(favicon_html, unsafe_allow_html=True)
 
 # Custom CSS
