@@ -1,13 +1,39 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
 import os
+import base64
+from PIL import Image
+import io
 
-st.set_page_config(
-    page_title="Wuling GP App",
-    page_icon="📊",
-    layout="wide"
-)
+# load logo file from assets
+BASE_DIR = os.path.dirname(__file__)
+LOGO_PATH = os.path.join(BASE_DIR, "assets", "logo.png")
+logo_img = None
+logo_bytes = None
+if os.path.exists(LOGO_PATH):
+    logo_img = Image.open(LOGO_PATH)
+    with open(LOGO_PATH, "rb") as f:
+        logo_bytes = f.read()
 
+# set page config - use logo image if available (must be called before other st.*)
+if logo_img:
+    st.set_page_config(
+        page_title="Wuling GP App",
+        page_icon=logo_img,
+        layout="wide"
+    )
+else:
+    st.set_page_config(
+        page_title="Wuling GP App",
+        page_icon="📊",
+        layout="wide"
+    )
+
+# also inject a favicon link (works around some browsers) using base64
+if logo_bytes:
+    b64 = base64.b64encode(logo_bytes).decode()
+    favicon_html = f'<link rel="icon" type="image/png" href="data:image/png;base64,{b64}" sizes="32x32" />'
+    st.markdown(favicon_html, unsafe_allow_html=True)
 
 # Custom CSS
 st.markdown("""
@@ -27,6 +53,8 @@ st.markdown("""
 
 # Sidebar menu
 with st.sidebar:
+    if logo_img:
+        st.image(logo_img, width=140)  # adjust width as you like
     selected = option_menu(
         "📂 Navigation",
         ["🏠 Home", "📈 GP Generator", "📊 Opex Summary", "🏢 Opex Cabang"],
