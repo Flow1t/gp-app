@@ -53,8 +53,6 @@ st.markdown("""
 
 # Sidebar menu
 with st.sidebar:
-    if logo_img:
-        st.image(logo_img, width=140)  # adjust width as you like
     selected = option_menu(
         "📂 Navigation",
         ["🏠 Home", "📈 GP Generator", "📊 Opex Summary", "🏢 Opex Cabang"],
