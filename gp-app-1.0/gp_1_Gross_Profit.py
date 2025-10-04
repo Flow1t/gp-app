@@ -481,7 +481,9 @@ def process_gp(file1, file2):
         "BINGUO LV 1",
         "BINGUO LV 2",
         "CLOUD EV LITE",
-        "CLOUD EV"
+        "CLOUD EV",
+        "MITRA EV BV",
+        "MITRA EV MB"
     ]
 
     type_order = [
@@ -492,7 +494,8 @@ def process_gp(file1, file2):
         "AIREV",
         "ALVEZ",
         "BINGUO",
-        "CLOUD"
+        "CLOUD",
+        "EV VAN"
     ]
 
     jumlah_do_ordered = jumlah_do.reindex(columns = cabang_order, fill_value = 0)
