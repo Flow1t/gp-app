@@ -482,8 +482,10 @@ def process_gp(file1, file2):
         "BINGUO LV 2",
         "CLOUD EV LITE",
         "CLOUD EV",
-        "MITRA EV BV",
-        "MITRA EV MB"
+        "MITRA EV BV 300",
+        "MITRA EV BV 400",
+        "MITRA EV MB 300",
+        "MITRA EV MB 400"
     ]
 
     type_order = [
