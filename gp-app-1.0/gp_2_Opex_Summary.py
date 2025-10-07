@@ -80,7 +80,7 @@ def opex_summary(opex_file):
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)listrik|air', 'Utilities Expense')
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)telepon|internet|kirim dokumen', 'Communication Expense')
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)dinas', 'Transportation & Travelling Expense')
-    aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)konsultan|ahli', 'Professional Fee')
+    aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)konsultan|ahli|notaris', 'Professional Fee')
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)asuransi', 'Insurance Expense')
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)training', 'Training Expense')
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)reklame|materai|pbb', 'Taxes License')

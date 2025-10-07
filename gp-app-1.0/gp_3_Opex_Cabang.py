@@ -78,7 +78,7 @@ def opex_cabang(opex_file):
         aggregate_columns(df_trans, '(?i)website', 'BY IT')
         aggregate_columns(df_trans, '(?i)credit|administrasi|transfer', 'BY ADM BANK')
         aggregate_columns(df_trans, '(?i)kirim dokumen', 'BY KIRIM DOKUMEN')
-        aggregate_columns(df_trans, '(?i)konsultan|audit', 'BY TENAGA AHLI')
+        aggregate_columns(df_trans, '(?i)konsultan|audit|notaris', 'BY TENAGA AHLI')
         aggregate_columns(df_trans, '(?i)rekreasi|duka cita|sumbangan|tunjangan lainnya|pernikahan', 'BY DONASI / SUMBANGAN')
         aggregate_columns(df_trans, '(?i)sewa lain-lain|buka puasa|penjualan lainnya', 'BY LAIN-LAIN')
         aggregate_columns(df_trans, '(?i)representasi|goodwill', 'BY CUSTOMER SERVICE')
