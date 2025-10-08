@@ -65,18 +65,18 @@ def opex_summary(opex_file):
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)insentif', 'Selling Incentive')
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)brosur|spanduk|event|promosi', 'Marketing Expense')
     opex_sum_transpose['Sales Commission'] = opex_transpose['Biaya Komisi Penjualan']
-    aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)pameran|iklan', 'Advertising & Promotions') #Double dengan Iklan Lowongan
+    aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)(\bpameran\b.*|\bbiaya iklan\b(?!\s*\w)(?<!\w\s))', 'Advertising & Promotions') #Double dengan Iklan Lowongan
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)bbm|transport|logistik|biaya penjualan lainnya|surat kendaraan', 'Shipping Expense')
     opex_sum_transpose['Predelivery Inspect'] = opex_transpose['Biaya PDC']
     opex_sum_transpose['Total Selling & Marketing Expense'] = opex_sum_transpose['Selling Incentive'] + opex_sum_transpose['Marketing Expense'] + opex_sum_transpose['Sales Commission'] + opex_sum_transpose['Advertising & Promotions'] + opex_sum_transpose['Shipping Expense'] + opex_sum_transpose['Predelivery Inspect']
 
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)gaji|tunjangan hari raya', 'Salary Expense')
-    aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)lembur|rekreasi|duka cita', 'Employee Welfare')
+    aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)lembur|rekreasi|duka cita|tunjangan lainnya|pernikahan|sumbangan', 'Employee Welfare')
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)bpjs', 'Jamsostek & Pension')
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)pemeliharaan|iuran rutin', 'Repair Maintenance')
     opex_sum_transpose['Tools'] = opex_transpose['Biaya Perlengkapan Kendaraan']
-    aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)biaya sewa lain-lain', 'Rent Expense')
-    aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)representasi|cafetaria|rapat', 'Entertainment & Representation Expense') 
+    aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)biaya sewa lain', 'Rent Expense')
+    aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)representasi|cafetaria|rapat|voucher service|goodwill', 'Entertainment & Representation Expense') 
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)listrik|air', 'Utilities Expense')
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)telepon|internet|kirim dokumen', 'Communication Expense')
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)dinas', 'Transportation & Travelling Expense')
@@ -91,7 +91,7 @@ def opex_summary(opex_file):
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)outsourcing', 'Security & Cleaning Expense')
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)perijinan', 'Claim Expense')
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)buka puasa', 'Miscellanous')
-    aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)provisi|credit|transfer', 'Bank Charge')
+    aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)provisi|credit|transfer|administrasi', 'Bank Charge')
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)amortisasi', 'Amortization Expense')
 
     opex_sum_transpose['Total General & Administratif Expense'] = opex_sum_transpose['Salary Expense'] + opex_sum_transpose['Employee Welfare'] + opex_sum_transpose ['Jamsostek & Pension'] + opex_sum_transpose['Repair Maintenance'] + opex_sum_transpose ['Tools'] + opex_sum_transpose['Rent Expense'] + opex_sum_transpose['Entertainment & Representation Expense'] + opex_sum_transpose['Utilities Expense'] + opex_sum_transpose['Communication Expense'] + opex_sum_transpose['Transportation & Travelling Expense'] + opex_sum_transpose['Insurance Expense'] + opex_sum_transpose['Training Expense'] + opex_sum_transpose['Taxes License'] + opex_sum_transpose['Office Supplies'] + opex_sum_transpose['IT Expense'] + opex_sum_transpose['Security & Cleaning Expense'] + opex_sum_transpose['Recruitment'] + opex_sum_transpose['Uniform'] + opex_sum_transpose['Claim Expense'] + opex_sum_transpose['Bank Charge'] + opex_sum_transpose['Professional Fee'] + opex_sum_transpose['Miscellanous']
