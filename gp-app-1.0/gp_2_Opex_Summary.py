@@ -66,7 +66,7 @@ def opex_summary(opex_file):
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)brosur|spanduk|event|promosi', 'Marketing Expense')
     opex_sum_transpose['Sales Commission'] = opex_transpose['Biaya Komisi Penjualan']
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)pameran|iklan', 'Advertising & Promotions') #Double dengan Iklan Lowongan
-    aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)bbm|transport|logistik|Biaya Perlengkapan Kendaraan|biaya penjualan lainnya|surat kendaraan', 'Shipping Expense')
+    aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)bbm|transport|logistik|biaya penjualan lainnya|surat kendaraan', 'Shipping Expense')
     opex_sum_transpose['Predelivery Inspect'] = opex_transpose['Biaya PDC']
     opex_sum_transpose['Total Selling & Marketing Expense'] = opex_sum_transpose['Selling Incentive'] + opex_sum_transpose['Marketing Expense'] + opex_sum_transpose['Sales Commission'] + opex_sum_transpose['Advertising & Promotions'] + opex_sum_transpose['Shipping Expense'] + opex_sum_transpose['Predelivery Inspect']
 
@@ -74,7 +74,7 @@ def opex_summary(opex_file):
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)lembur|rekreasi|duka cita', 'Employee Welfare')
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)bpjs', 'Jamsostek & Pension')
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)pemeliharaan|iuran rutin', 'Repair Maintenance')
-    opex_sum_transpose['Tools'] = opex_transpose['Biaya Perlengkapan Bengkel']
+    opex_sum_transpose['Tools'] = opex_transpose['Biaya Perlengkapan Kendaraan']
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)biaya sewa lain-lain', 'Rent Expense')
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)representasi|cafetaria|rapat', 'Entertainment & Representation Expense') 
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)listrik|air', 'Utilities Expense')
