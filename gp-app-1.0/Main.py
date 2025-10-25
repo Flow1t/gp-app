@@ -70,8 +70,8 @@ st.markdown("""
 with st.sidebar:
     selected = option_menu(
         "📂 Navigation",
-        ["🏠 Home", "📈 GP Generator", "📊 Opex Summary", "🏢 Opex Cabang"],
-        icons=["house", "bar-chart", "table", "building"],
+        ["🏠 Home", "📈 GP Generator", "📊 Opex Summary", "🏢 Opex Cabang", "🧾 Opex Cabang Monthly"],
+        icons = ["house", "bar-chart", "table", "building", "file-earmark-excel"],
         menu_icon="menu-app",
         default_index=0
     )
@@ -133,3 +133,17 @@ elif selected == "🏢 Opex Cabang":
         st.success("✅ Opex Cabang generated!")
         with open(output_file, "rb") as f:
             st.download_button("⬇ Download Opex Cabang", f, file_name="opex-cabang.xlsx")
+
+#Opex Cabang Monthly
+elif selected == "🧾 Opex Cabang Monthly":
+    from gp_4_Opex_Cabang_Monthly import opex_cabang_monthly
+
+    st.header("🧾 Opex Cabang Monthly Merger")
+    file = st.file_uploader("📄 Upload Opex Cabang file", type=["xlsx"])
+    if file:
+        st.markdown(f"<div class='uploaded-file'>✅ {file.name} ({round(len(file.getbuffer())/1024, 1)} KB)</div>", unsafe_allow_html=True)
+        with st.spinner("Processing Opex Cabang Monthly..."):
+            output_file = opex_cabang_monthly(file)
+        st.success("✅ Combined file generated!")
+        with open(output_file, "rb") as f:
+            st.download_button("⬇ Download Combined Excel File", f, file_name="Opex_Combined_vlookup_style.xlsx")
