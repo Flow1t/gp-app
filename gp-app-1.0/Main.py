@@ -138,7 +138,7 @@ elif selected == "🏢 Opex Cabang":
 elif selected == "🧾 Opex Cabang Monthly":
     from gp_4_Opex_Cabang_Monthly import opex_cabang_monthly
 
-    st.header("🧾 Opex Cabang Monthly Merger")
+    st.header("🧾 Opex Cabang Monthly")
     file = st.file_uploader("📄 Upload Opex Cabang file", type=["xlsx"])
     if file:
         st.markdown(f"<div class='uploaded-file'>✅ {file.name} ({round(len(file.getbuffer())/1024, 1)} KB)</div>", unsafe_allow_html=True)
