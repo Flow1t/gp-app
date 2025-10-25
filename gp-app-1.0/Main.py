@@ -144,10 +144,22 @@ elif selected == "🧾 Opex Cabang Monthly":
 
     st.header("🧾 Opex Cabang Monthly")
     file = st.file_uploader("📄 Upload Opex Cabang file", type=["xlsx"])
+
     if file:
-        st.markdown(f"<div class='uploaded-file'>✅ {file.name} ({round(len(file.getbuffer())/1024, 1)} KB)</div>", unsafe_allow_html=True)
+        st.markdown(
+            f"<div class='uploaded-file'>✅ {file.name} ({round(len(file.getbuffer())/1024, 1)} KB)</div>",
+            unsafe_allow_html=True
+        )
+
         with st.spinner("Processing Opex Cabang Monthly..."):
-            output_file = opex_cabang_monthly(file)
+            output_io = opex_cabang_monthly(file)  # <— returns BytesIO, not path
+
         st.success("✅ Combined file generated!")
-        with open(output_file, "rb") as f:
-            st.download_button("⬇ Download Combined Excel File", f, file_name="Opex_Wuling_All_Cabang_Monthly.xlsx")
+
+        st.download_button(
+            "⬇ Download Combined Excel File",
+            data=output_io,
+            file_name="Opex_Wuling_All_Cabang_Monthly.xlsx",
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        )
+
