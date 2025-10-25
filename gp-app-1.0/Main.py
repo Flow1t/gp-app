@@ -1,6 +1,7 @@
+import os
+os.environ["STREAMLIT_SERVER_FILE_WATCHER_TYPE"] = "none"
 import streamlit as st
 from streamlit_option_menu import option_menu
-import os
 import base64
 from PIL import Image
 import io
