@@ -65,7 +65,7 @@ def opex_summary(opex_file):
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)insentif', 'Selling Incentive')
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)brosur|spanduk|event|promosi', 'Marketing Expense')
     opex_sum_transpose['Sales Commission'] = opex_transpose['Biaya Komisi Penjualan']
-    aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)(\bpameran\b.*|\bbiaya iklan\b(?!\s*\w)(?<!\w\s))', 'Advertising & Promotions') #Double dengan Iklan Lowongan
+    aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)(\bBiaya Pameran\b.*|\bBiaya Iklan\b(?!\s*\w)(?<!\w\s))', 'Advertising & Promotions') #Double dengan Iklan Lowongan
     aggregate_columns(opex_transpose, opex_sum_transpose, '(?i)bbm|transport|logistik|biaya penjualan lainnya|surat kendaraan', 'Shipping Expense')
     opex_sum_transpose['Predelivery Inspect'] = opex_transpose['Biaya PDC']
     opex_sum_transpose['Total Selling & Marketing Expense'] = opex_sum_transpose['Selling Incentive'] + opex_sum_transpose['Marketing Expense'] + opex_sum_transpose['Sales Commission'] + opex_sum_transpose['Advertising & Promotions'] + opex_sum_transpose['Shipping Expense'] + opex_sum_transpose['Predelivery Inspect']
