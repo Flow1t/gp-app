@@ -6,7 +6,7 @@ import pandas as pd
 
 def opex_cabang(opex_file):
     file_name = opex_file
-    cabang = ['CBR', 'CKP', 'FTM', 'DM', 'KBJ', 'TAJUR', 'KPG', 'GRESIK', 'MJKT', 'MDN', 'SBY', 'HO', 'SERPONG']
+    cabang = ['CIBUBUR', 'CIKUPA', 'FTM', 'DM', 'SPG', 'KBJ', 'TAJUR', 'KUPANG', 'GRESIK', 'MOJOKERTO', 'MADIUN', 'SBY', 'HO']
     output_file = "opex_cabang.xlsx"
 
     # Read each sheet into a dictionary.
