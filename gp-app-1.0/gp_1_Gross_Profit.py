@@ -502,7 +502,7 @@ def process_gp(file1, file2):
         "ALVEZ",
         "BINGUO",
         "CLOUD",
-        "DARION",
+        "DARION EV",
         "EV VAN"
     ]
 
