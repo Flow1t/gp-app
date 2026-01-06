@@ -108,7 +108,7 @@ def process_gp(file1, file2):
     df1.drop(columns=columns_to_drop, inplace=True)
 
     df1["Special Incentive"] = df1.filter(regex='(?i)special incentive').sum(axis=1)
-    df1["SALES PROGRAM"] = df1.filter(regex='(?i)rs subsidi').sum(axis=1)
+    df1["SALES PROGRAM"] = df1.filter(regex='(?i)rs subsidi|special early bird').sum(axis=1)
     df1["FREE INSURANCE"] = df1.filter(regex='(?i)free insurance').sum(axis=1)
 
     # Combine all columns containing 'SURAT' by summing them (Insentif Surat Jalan)
