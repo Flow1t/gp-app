@@ -185,7 +185,7 @@ def process_gp(file1, file2):
     columns_to_drop = [col for col in columns_to_drop if col != 'VOUCHER GIIAS']
     df1.drop(columns=columns_to_drop, inplace=True)
 
-    df1['VOUCHER EV & GIIAS, CASH DISKON/ trade in, EX Factory GAP'] = df1.filter(regex='(?i)electricity voucher|gasoline voucher').sum(axis=1)
+    df1['VOUCHER EV & GIIAS, CASH DISKON/ trade in, EX Factory GAP'] = df1.filter(regex='(?i)electricity voucher|gasoline voucher|conversion').sum(axis=1)
 
 
     df2.rename(columns={'CHASIS': 'NO CHASIS'}, inplace=True)
