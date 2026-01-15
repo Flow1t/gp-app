@@ -462,7 +462,8 @@ def process_gp(file1, file2):
         "GRESIK",
         "MOJOKERTO",
         "MADIUN",
-        "KERTAJAYA"
+        "KERTAJAYA",
+        "HO"
     ]
 
     merk_order = [
