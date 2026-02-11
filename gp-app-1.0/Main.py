@@ -142,6 +142,16 @@ st.markdown("""
     label {
         color: #e5e7eb;
     }
+
+    /* Sidebar app title */
+    .sidebar-title {
+        text-align: center;
+        font-size: 22px;
+        font-weight: 700;
+        margin-top: 0.5rem;
+        margin-bottom: 0.75rem;
+        color: #f9fafb;
+    }
 </style>
 """, unsafe_allow_html=True)
 
