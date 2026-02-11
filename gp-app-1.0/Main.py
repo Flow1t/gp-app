@@ -37,7 +37,6 @@ else:
 if logo_bytes:
     from io import BytesIO
 
-    # create a 48x48 PNG for favicon
     buf = BytesIO()
     img = Image.open(BytesIO(logo_bytes)).convert("RGBA")
     favicon_img = img.resize((48, 48), Image.LANCZOS)
@@ -48,6 +47,7 @@ if logo_bytes:
         f'<link rel="icon" type="image/png" sizes="48x48" href="data:image/png;base64,{b64_48}" />'
     )
     st.markdown(favicon_html, unsafe_allow_html=True)
+
 
 # Custom CSS
 st.markdown("""
