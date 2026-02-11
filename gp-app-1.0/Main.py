@@ -60,14 +60,14 @@ st.markdown("""
 <style>
     /* Overall background */
     .stApp {
-        background: #0b1120;
-        color: #e5e7eb;
+        background: #f5f5f5;
+        color: #111827;
     }
 
     /* Sidebar */
     section[data-testid="stSidebar"] {
-        background: #020617;
-        border-right: 1px solid #1f2937;
+        background: #f3f4f6;
+        border-right: 1px solid #e5e7eb;
     }
 
     /* Main container tweaks */
@@ -81,57 +81,52 @@ st.markdown("""
     .main-title { 
         font-size: 34px; 
         font-weight: 700; 
-        color: #e5e7eb; 
-        letter-spacing: 0.03em;
+        color: #111827; 
+        letter-spacing: 0.02em;
     }
     .sub-title { 
         font-size: 16px; 
-        color: #9ca3af; 
+        color: #6b7280; 
         margin-bottom: 1.5rem; 
     }
 
     /* Uploaded file label */
     .uploaded-file { 
         font-size: 13px; 
-        color: #22c55e; 
+        color: #15803d; 
         margin-top: -8px; 
     }
 
     /* Download buttons */
     .stDownloadButton > button {
-        background: linear-gradient(135deg, #2563eb, #1d4ed8); 
-        color: #e5e7eb; 
+        background: #2563eb; 
+        color: #ffffff; 
         font-size: 15px; 
         padding: 0.6rem 1.4rem;
         border-radius: 999px;
         border: none;
-        box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
     }
     .stDownloadButton > button:hover {
-        background: linear-gradient(135deg, #1d4ed8, #1e40af); 
-        box-shadow: 0 12px 30px rgba(37, 99, 235, 0.45);
-    }
-
-    /* General buttons (e.g. radio, etc.) */
-    button[kind="secondary"] {
-        border-radius: 999px !important;
+        background: #1d4ed8; 
+        box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
     }
 
     /* Info / success boxes */
     .stAlert {
-        border-radius: 12px;
-        border: 1px solid #1f2937;
-        background: #020617;
+        border-radius: 10px;
+        border: 1px solid #e5e7eb;
+        background: #ffffff;
     }
 
     /* Headers */
     h1, h2, h3 {
-        color: #e5e7eb;
+        color: #111827;
     }
 
-    /* File uploader */
+    /* File uploader label */
     .stFileUploader label {
-        color: #e5e7eb;
+        color: #111827;
         font-weight: 500;
     }
 </style>
@@ -149,20 +144,15 @@ with st.sidebar:
 
 # Home page
 if selected == "🏠 Home":
-    col_left, col_right = st.columns([2, 1], gap="large")
-    with col_left:
-        st.markdown(
-            "<div class='main-title'>Wuling Monthly GP Report Generator</div>",
-            unsafe_allow_html=True,
-        )
-        st.markdown(
-            "<div class='sub-title'>Generate Gross Profit and Opex reports from your monthly financial files with a clean, modern interface.</div>",
-            unsafe_allow_html=True,
-        )
-        st.info("Use the navigation on the left to select a report to generate.")
-    with col_right:
-        st.markdown("### Quick actions")
-        st.markdown("- 📈 Generate Gross Profit report\n- 📊 Create Opex summary\n- 🏢 Build Opex per branch")
+    st.markdown(
+        "<div class='main-title'>Wuling Monthly GP Report Generator</div>",
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        "<div class='sub-title'>Generate Gross Profit and Opex reports from your monthly financial files with a clean, modern interface.</div>",
+        unsafe_allow_html=True,
+    )
+    st.info("Use the navigation on the left to select which report you want to generate.")
 
 # GP Generator
 elif selected == "📈 GP Generator":
