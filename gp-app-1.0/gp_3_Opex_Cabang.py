@@ -256,7 +256,7 @@ def main():
         with open(opex, "rb") as f:
             file_content = f.read()
 
-        st.download_button("Download Opex Summary Exccel File", data = file_content, file_name="opex-cabang.xlsx", mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+        st.download_button("Download Opex Summary Excel File", data = file_content, file_name="opex-cabang.xlsx", mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
 
 if __name__ == "__main__":
     main()

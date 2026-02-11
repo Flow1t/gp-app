@@ -17,7 +17,7 @@ logo_bytes = None
 if os.path.exists(LOGO_PATH):
     logo_img = Image.open(LOGO_PATH)
     with open(LOGO_PATH, "rb") as f:
-        logo_bytes = f.read()
+        logo_bytes = Image.open(f)
 
 # set page config - use logo image if available (must be called before other st.*)
 if logo_img:
@@ -36,10 +36,6 @@ else:
 # also inject a favicon link (works around some browsers) using base64
 if logo_bytes:
     from io import BytesIO
-    import base64
-
-    # original bytes (fallback)
-    b64_orig = base64.b64encode(logo_bytes).decode()
 
     # create a 48x48 PNG for favicon
     buf = BytesIO()
@@ -50,7 +46,6 @@ if logo_bytes:
 
     favicon_html = (
         f'<link rel="icon" type="image/png" sizes="48x48" href="data:image/png;base64,{b64_48}" />'
-        f'<link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,{b64_orig}" />'
     )
     st.markdown(favicon_html, unsafe_allow_html=True)
 

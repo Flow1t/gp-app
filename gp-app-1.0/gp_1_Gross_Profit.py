@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import requests
+import time
 from io import BytesIO
 
 # st.set_page_config(page_title="GP")
@@ -26,26 +27,90 @@ def process_gp(file1, file2):
         "luar_jabodetabek": "https://raw.githubusercontent.com/Flow1t/gp-app/refs/heads/main/gp-app-1.0/luar%20jawa.txt"
     }
     
-    # Function to download and read Excel files
-    def load_excel_from_github(url, sheet_name=None):
-        """Loads an Excel file from a GitHub raw URL and reads the specified sheet."""
-        response = requests.get(url)
-        
-        if response.status_code == 200:
-            excel_data = BytesIO(response.content)  # Convert to file-like object
-            return pd.read_excel(excel_data, sheet_name=sheet_name, engine="openpyxl")  # Read the requested sheet
-        else:
-            raise FileNotFoundError(f"Failed to load Excel file from {url}. Status code: {response.status_code}")
+        # Function to download and read Excel files
+    def load_excel_from_github(url, sheet_name=None, timeout=10, max_retries=3):
+        """Loads an Excel file from a GitHub raw URL and reads the specified sheet.
 
-    def load_text_from_github(file_name):
+        Args:
+            url (str): GitHub raw URL of the Excel file.
+            sheet_name (str | int | None): Sheet name or index to read.
+            timeout (int | float): Request timeout in seconds.
+            max_retries (int): Number of retries on transient network errors.
+        """
+        last_error = None
+
+        for attempt in range(1, max_retries + 1):
+            try:
+                response = requests.get(url, timeout=timeout)
+                if response.status_code == 200:
+                    excel_data = BytesIO(response.content)  # Convert to file-like object
+                    return pd.read_excel(
+                        excel_data,
+                        sheet_name=sheet_name,
+                        engine="openpyxl",
+                    )  # Read the requested sheet
+                else:
+                    # Non-200 is unlikely to be fixed by retrying; break early
+                    msg = (
+                        f"Failed to load Excel file from {url}. "
+                        f"Status code: {response.status_code}"
+                    )
+                    try:
+                        import streamlit as st  # type: ignore
+                        st.error(msg)
+                    except Exception:
+                        pass
+                    raise FileNotFoundError(msg)
+            except requests.RequestException as exc:
+                last_error = exc
+                if attempt == max_retries:
+                    error_msg = (
+                        f"Network error while downloading Excel file from {url} "
+                        f"after {max_retries} attempt(s): {exc}"
+                    )
+                    try:
+                        import streamlit as st  # type: ignore
+                        st.error(error_msg)
+                    except Exception:
+                        pass
+                    raise
+                # Optional: brief backoff; kept minimal to avoid long waits
+                time.sleep(1)
+
+        def load_text_from_github(file_name, timeout=10, max_retries=3):
         url = file_name
-        response = requests.get(url)
-    
-        if response.status_code == 200:
-            return {value.strip() for line in response.text.splitlines() for value in line.split(',')}
-        else:
-            st.error(f"Failed to load {file_name} from GitHub")
-            return set()
+        last_error = None
+
+        for attempt in range(1, max_retries + 1):
+            try:
+                response = requests.get(url, timeout=timeout)
+                if response.status_code == 200:
+                    break
+                else:
+                    msg = (
+                        f"Failed to load text file from {url}. "
+                        f"Status code: {response.status_code}"
+                    )
+                    try:
+                        import streamlit as st  # type: ignore
+                        st.error(msg)
+                    except Exception:
+                        pass
+                    raise FileNotFoundError(msg)
+            except requests.RequestException as exc:
+                last_error = exc
+                if attempt == max_retries:
+                    error_msg = (
+                        f"Network error while downloading text file from {url} "
+                        f"after {max_retries} attempt(s): {exc}"
+                    )
+                    try:
+                        import streamlit as st  # type: ignore
+                        st.error(error_msg)
+                    except Exception:
+                        pass
+                    raise
+                time.sleep(1)
 
     ws = load_excel_from_github(file_urls["df_prima"], sheet_name= "ALL")
     rs = load_excel_from_github(file_urls["all_rs"], sheet_name = 'RS')
@@ -269,7 +334,6 @@ def process_gp(file1, file2):
     GP_df['Tahun'] = GP_df['Tahun'].astype(str)
 
     #Adding calculations
-    GP_df['Ongkir SGMW TO DM'] = GP_df['Ongkir SGMW TO DM'].apply(pd.to_numeric)
     GP_df['Ongkir SGMW TO DM'] = 326000
 
     GP_df['Tebusan Bulan'] = pd.to_datetime(GP_df['Tebusan Bulan'], dayfirst=True).dt.strftime('%b-%y')
