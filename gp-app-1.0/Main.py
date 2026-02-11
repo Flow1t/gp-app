@@ -150,7 +150,7 @@ with st.sidebar:
     # Logo + title in sidebar
     if logo_img is not None:
         st.image(logo_img, use_column_width=True)
-    st.markdown("### Wuling GP App")
+    st.markdown("<div class='sidebar-title'>Wuling GP App</div>", unsafe_allow_html=True)
     st.markdown("---")
 
     # Navigation menu
