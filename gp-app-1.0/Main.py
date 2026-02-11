@@ -146,7 +146,7 @@ st.markdown("""
     /* Sidebar app title */
     .sidebar-title {
         text-align: center;
-        font-size: 25px;
+        font-size: 20px;
         font-weight: 700;
         margin-top: 0rem;
         margin-bottom: 0rem;
@@ -159,7 +159,7 @@ st.markdown("""
 with st.sidebar:
     # Logo + title in sidebar
     if logo_img is not None:
-        st.image(logo_img, use_column_width=True)
+        st.image(logo_img, width = 120)
     st.markdown("<div class='sidebar-title'>WULING GP APP</div>", unsafe_allow_html=True)
     st.markdown("---")
 
