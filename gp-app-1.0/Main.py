@@ -146,10 +146,10 @@ st.markdown("""
     /* Sidebar app title */
     .sidebar-title {
         text-align: center;
-        font-size: 22px;
+        font-size: 25px;
         font-weight: 700;
-        margin-top: 0.5rem;
-        margin-bottom: 0.75rem;
+        margin-top: 0rem;
+        margin-bottom: 0rem;
         color: #f9fafb;
     }
 </style>
@@ -160,7 +160,7 @@ with st.sidebar:
     # Logo + title in sidebar
     if logo_img is not None:
         st.image(logo_img, use_column_width=True)
-    st.markdown("<div class='sidebar-title'>Wuling GP App</div>", unsafe_allow_html=True)
+    st.markdown("<div class='sidebar-title'>WULING GP APP</div>", unsafe_allow_html=True)
     st.markdown("---")
 
     # Navigation menu
