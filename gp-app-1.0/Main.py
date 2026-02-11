@@ -91,17 +91,27 @@ elif selected == "📈 GP Generator":
     from gp_1_Gross_Profit import process_gp
 
     st.header("📈 Gross Profit Report Generator")
-    st.write("Upload your 'Gross Profit Penjualan' and 'Penjualan Unit' files to generate the GP report.")
+    st.write(
+        "Upload your 'Gross Profit Penjualan' and 'Penjualan Unit' files to generate the GP report."
+    )
 
     col1, col2 = st.columns(2)
     with col1:
         file1 = st.file_uploader("📄 Gross Profit Penjualan", type=["xlsx"])
         if file1:
-            st.markdown(f"<div class='uploaded-file'>✅ {file1.name} ({round(len(file1.getbuffer())/1024, 1)} KB)</div>", unsafe_allow_html=True)
+            st.markdown(
+                f"<div class='uploaded-file'>✅ {file1.name} "
+                f"({round(len(file1.getbuffer())/1024, 1)} KB)</div>",
+                unsafe_allow_html=True,
+            )
     with col2:
         file2 = st.file_uploader("📄 Report Penjualan Unit", type=["xlsx"])
         if file2:
-            st.markdown(f"<div class='uploaded-file'>✅ {file2.name} ({round(len(file2.getbuffer())/1024, 1)} KB)</div>", unsafe_allow_html=True)
+            st.markdown(
+                f"<div class='uploaded-file'>✅ {file2.name} "
+                f"({round(len(file2.getbuffer())/1024, 1)} KB)</div>",
+                unsafe_allow_html=True,
+            )
 
     if file1 and file2:
         with st.spinner("Processing GP report..."):
