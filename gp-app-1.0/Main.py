@@ -152,6 +152,13 @@ st.markdown("""
         margin-bottom: 0rem;
         color: #f9fafb;
     }
+    
+    /* Logo Wuling in sidebar */
+    .sidebar-logo {
+        width: 125px;
+        align-items: center;
+        margin:0px;
+    }
 </style>
 """, unsafe_allow_html=True)
 
