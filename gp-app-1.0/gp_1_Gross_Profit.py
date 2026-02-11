@@ -24,33 +24,25 @@ def process_gp(file1, file2):
         "all_rs": "https://raw.githubusercontent.com/Flow1t/gp-app/main/gp-app-1.0/ALL%20RS.xlsx",
         "pricelist": "https://raw.githubusercontent.com/Flow1t/gp-app/main/gp-app-1.0/Pricelist%20Car.xlsx",
         "jabodetabek": "https://raw.githubusercontent.com/Flow1t/gp-app/refs/heads/main/gp-app-1.0/wilayah.txt",
-        "luar_jabodetabek": "https://raw.githubusercontent.com/Flow1t/gp-app/refs/heads/main/gp-app-1.0/luar%20jawa.txt"
+        "luar_jabodetabek": "https://raw.githubusercontent.com/Flow1t/gp-app/refs/heads/main/gp-app-1.0/luar%20jawa.txt",
     }
-    
-        # Function to download and read Excel files
-    def load_excel_from_github(url, sheet_name=None, timeout=10, max_retries=3):
-        """Loads an Excel file from a GitHub raw URL and reads the specified sheet.
 
-        Args:
-            url (str): GitHub raw URL of the Excel file.
-            sheet_name (str | int | None): Sheet name or index to read.
-            timeout (int | float): Request timeout in seconds.
-            max_retries (int): Number of retries on transient network errors.
-        """
+    # Function to download and read Excel files
+    def load_excel_from_github(url, sheet_name=None, timeout=10, max_retries=3):
+        """Loads an Excel file from a GitHub raw URL and reads the specified sheet."""
         last_error = None
 
         for attempt in range(1, max_retries + 1):
             try:
                 response = requests.get(url, timeout=timeout)
                 if response.status_code == 200:
-                    excel_data = BytesIO(response.content)  # Convert to file-like object
+                    excel_data = BytesIO(response.content)
                     return pd.read_excel(
                         excel_data,
                         sheet_name=sheet_name,
                         engine="openpyxl",
-                    )  # Read the requested sheet
+                    )
                 else:
-                    # Non-200 is unlikely to be fixed by retrying; break early
                     msg = (
                         f"Failed to load Excel file from {url}. "
                         f"Status code: {response.status_code}"
@@ -74,18 +66,22 @@ def process_gp(file1, file2):
                     except Exception:
                         pass
                     raise
-                # Optional: brief backoff; kept minimal to avoid long waits
                 time.sleep(1)
 
-        def load_text_from_github(file_name, timeout=10, max_retries=3):
-            url = file_name
-            last_error = None
+    # Function to download and read text files (wilayah lists)
+    def load_text_from_github(url, timeout=10, max_retries=3):
+        last_error = None
 
         for attempt in range(1, max_retries + 1):
             try:
                 response = requests.get(url, timeout=timeout)
                 if response.status_code == 200:
-                    break
+                    # return list of stripped, non-empty lines
+                    return [
+                        line.strip()
+                        for line in response.text.splitlines()
+                        if line.strip()
+                    ]
                 else:
                     msg = (
                         f"Failed to load text file from {url}. "
