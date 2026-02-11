@@ -78,8 +78,8 @@ def process_gp(file1, file2):
                 time.sleep(1)
 
         def load_text_from_github(file_name, timeout=10, max_retries=3):
-        url = file_name
-        last_error = None
+            url = file_name
+            last_error = None
 
         for attempt in range(1, max_retries + 1):
             try:
