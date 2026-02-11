@@ -60,14 +60,19 @@ st.markdown("""
 <style>
     /* Overall background */
     .stApp {
-        background: #f5f5f5;
-        color: #111827;
+        background: #020617; /* very dark navy */
+        color: #e5e7eb;      /* light gray text */
     }
 
     /* Sidebar */
     section[data-testid="stSidebar"] {
-        background: #f3f4f6;
-        border-right: 1px solid #e5e7eb;
+        background: #020617;
+        border-right: 1px solid #111827;
+    }
+    section[data-testid="stSidebar"] h1,
+    section[data-testid="stSidebar"] h2,
+    section[data-testid="stSidebar"] h3 {
+        color: #f9fafb;
     }
 
     /* Main container tweaks */
@@ -81,65 +86,80 @@ st.markdown("""
     .main-title { 
         font-size: 34px; 
         font-weight: 700; 
-        color: #111827; 
+        color: #f9fafb; 
         letter-spacing: 0.02em;
     }
     .sub-title { 
         font-size: 16px; 
-        color: #6b7280; 
+        color: #9ca3af; 
         margin-bottom: 1.5rem; 
     }
 
     /* Uploaded file label */
     .uploaded-file { 
         font-size: 13px; 
-        color: #15803d; 
+        color: #bbf7d0; 
         margin-top: -8px; 
     }
 
-    /* Download buttons */
+    /* Download buttons (white pill buttons) */
     .stDownloadButton > button {
-        background: #2563eb; 
-        color: #ffffff; 
+        background: #ffffff; 
+        color: #020617; 
         font-size: 15px; 
         padding: 0.6rem 1.4rem;
         border-radius: 999px;
         border: none;
-        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.7);
+        font-weight: 600;
     }
     .stDownloadButton > button:hover {
-        background: #1d4ed8; 
-        box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+        background: #e5e7eb; 
+        color: #020617;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.9);
     }
 
     /* Info / success boxes */
     .stAlert {
         border-radius: 10px;
-        border: 1px solid #e5e7eb;
-        background: #ffffff;
+        border: 1px solid #1f2937;
+        background: #020617;
+        color: #e5e7eb;
     }
 
     /* Headers */
     h1, h2, h3 {
-        color: #111827;
+        color: #f9fafb;
     }
 
     /* File uploader label */
     .stFileUploader label {
-        color: #111827;
+        color: #e5e7eb;
         font-weight: 500;
+    }
+
+    /* Radio / select labels etc. */
+    label {
+        color: #e5e7eb;
     }
 </style>
 """, unsafe_allow_html=True)
 
 # Sidebar menu
 with st.sidebar:
+    # Logo + title in sidebar
+    if logo_img is not None:
+        st.image(logo_img, use_column_width=True)
+    st.markdown("### Wuling GP App")
+    st.markdown("---")
+
+    # Navigation menu
     selected = option_menu(
-        "📂 Navigation",
+        None,  # no big title inside the menu itself
         ["🏠 Home", "📈 GP Generator", "📊 Opex Summary", "🏢 Opex Cabang", "🧾 Opex Cabang Monthly"],
-        icons = ["house", "bar-chart", "table", "building", "file-earmark-excel"],
+        icons=["house", "bar-chart", "table", "building", "file-earmark-excel"],
         menu_icon="menu-app",
-        default_index=0
+        default_index=0,
     )
 
 # Home page
