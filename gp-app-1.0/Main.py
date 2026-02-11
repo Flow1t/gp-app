@@ -55,17 +55,84 @@ if logo_bytes:
     st.markdown(favicon_html, unsafe_allow_html=True)
 
 # Custom CSS
+# Custom CSS – clean, modern theme
 st.markdown("""
 <style>
-    .main-title { font-size: 36px; font-weight: bold; color: #FF4B4B; }
-    .sub-title { font-size: 18px; color: #555; margin-bottom: 20px; }
-    .uploaded-file { font-size: 14px; color: #2e7d32; margin-top: -10px; }
-    .stDownloadButton > button {
-        background-color: #FF4B4B; 
-        color: white; 
+    /* Overall background */
+    .stApp {
+        background: #0b1120;
+        color: #e5e7eb;
+    }
+
+    /* Sidebar */
+    section[data-testid="stSidebar"] {
+        background: #020617;
+        border-right: 1px solid #1f2937;
+    }
+
+    /* Main container tweaks */
+    .block-container {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        max-width: 1200px;
+    }
+
+    /* Titles */
+    .main-title { 
+        font-size: 34px; 
+        font-weight: 700; 
+        color: #e5e7eb; 
+        letter-spacing: 0.03em;
+    }
+    .sub-title { 
         font-size: 16px; 
-        padding: 10px 20px;
-        border-radius: 8px;
+        color: #9ca3af; 
+        margin-bottom: 1.5rem; 
+    }
+
+    /* Uploaded file label */
+    .uploaded-file { 
+        font-size: 13px; 
+        color: #22c55e; 
+        margin-top: -8px; 
+    }
+
+    /* Download buttons */
+    .stDownloadButton > button {
+        background: linear-gradient(135deg, #2563eb, #1d4ed8); 
+        color: #e5e7eb; 
+        font-size: 15px; 
+        padding: 0.6rem 1.4rem;
+        border-radius: 999px;
+        border: none;
+        box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+    }
+    .stDownloadButton > button:hover {
+        background: linear-gradient(135deg, #1d4ed8, #1e40af); 
+        box-shadow: 0 12px 30px rgba(37, 99, 235, 0.45);
+    }
+
+    /* General buttons (e.g. radio, etc.) */
+    button[kind="secondary"] {
+        border-radius: 999px !important;
+    }
+
+    /* Info / success boxes */
+    .stAlert {
+        border-radius: 12px;
+        border: 1px solid #1f2937;
+        background: #020617;
+    }
+
+    /* Headers */
+    h1, h2, h3 {
+        color: #e5e7eb;
+    }
+
+    /* File uploader */
+    .stFileUploader label {
+        color: #e5e7eb;
+        font-weight: 500;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -82,18 +149,27 @@ with st.sidebar:
 
 # Home page
 if selected == "🏠 Home":
-    st.markdown("<div class='main-title'>Wuling Monthly GP Report Generator</div>", unsafe_allow_html=True)
-    st.markdown("<div class='sub-title'>Generate Gross Profit and Opex reports from your monthly financial files with a modern interface.</div>", unsafe_allow_html=True)
-    st.info("Select a feature from the left menu to get started.")
+    col_left, col_right = st.columns([2, 1], gap="large")
+    with col_left:
+        st.markdown(
+            "<div class='main-title'>Wuling Monthly GP Report Generator</div>",
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            "<div class='sub-title'>Generate Gross Profit and Opex reports from your monthly financial files with a clean, modern interface.</div>",
+            unsafe_allow_html=True,
+        )
+        st.info("Use the navigation on the left to select a report to generate.")
+    with col_right:
+        st.markdown("### Quick actions")
+        st.markdown("- 📈 Generate Gross Profit report\n- 📊 Create Opex summary\n- 🏢 Build Opex per branch")
 
 # GP Generator
 elif selected == "📈 GP Generator":
     from gp_1_Gross_Profit import process_gp
 
     st.header("📈 Gross Profit Report Generator")
-    st.write(
-        "Upload your 'Gross Profit Penjualan' and 'Penjualan Unit' files to generate the GP report."
-    )
+    st.caption("Upload the monthly Gross Profit and Penjualan Unit files to generate the GP report.")
 
     col1, col2 = st.columns(2)
     with col1:
