@@ -63,52 +63,71 @@ if logo_bytes:
 # Custom CSS – clean, modern theme
 st.markdown("""
 <style>
-    /* Overall background */
-    .stApp {
-        background: #020617; /* very dark navy */
-        color: #e5e7eb;      /* light gray text */
-    }
-
-    /* Sidebar */
-    section[data-testid="stSidebar"] {
-        background: #020617;
-        border-right: 1px solid #111827;
-    }
-    section[data-testid="stSidebar"] h1,
-    section[data-testid="stSidebar"] h2,
-    section[data-testid="stSidebar"] h3 {
-        color: #f9fafb;
-    }
-
-    /* Main container tweaks */
+    /* Common layout */
     .block-container {
         padding-top: 2rem;
         padding-bottom: 2rem;
         max-width: 1200px;
     }
 
-    /* Titles */
     .main-title { 
         font-size: 34px; 
         font-weight: 700; 
-        color: #f9fafb; 
         letter-spacing: 0.02em;
     }
     .sub-title { 
         font-size: 16px; 
-        color: #9ca3af; 
         margin-bottom: 1.5rem; 
     }
 
-    /* Uploaded file label */
     .uploaded-file { 
         font-size: 13px; 
-        color: #bbf7d0; 
         margin-top: -8px; 
     }
 
-    /* Download buttons (white pill buttons) */
-    .stDownloadButton > button {
+    .sidebar-title {
+        text-align: center;
+        font-size: 20px;
+        font-weight: 700;
+        margin-top: 0rem;
+        margin-bottom: 0rem;
+    }
+
+    .sidebar-logo {
+        display: block;
+        margin: 0.5rem auto 0.25rem auto;
+        width: 110px;
+        border-radius: 12px;
+    }
+
+    /* ---------- DARK THEME ---------- */
+    [data-theme="dark"] .stApp {
+        background: #020617;
+        color: #e5e7eb;
+    }
+
+    [data-theme="dark"] section[data-testid="stSidebar"] {
+        background: #020617;
+        border-right: 1px solid #111827;
+    }
+    [data-theme="dark"] section[data-testid="stSidebar"] h1,
+    [data-theme="dark"] section[data-testid="stSidebar"] h2,
+    [data-theme="dark"] section[data-testid="stSidebar"] h3,
+    [data-theme="dark"] .sidebar-title {
+        color: #f9fafb;
+    }
+
+    [data-theme="dark"] .main-title { 
+        color: #f9fafb; 
+    }
+    [data-theme="dark"] .sub-title { 
+        color: #9ca3af; 
+    }
+    [data-theme="dark"] .uploaded-file { 
+        color: #bbf7d0; 
+    }
+
+    [data-theme="dark"] .stDownloadButton > button {
         background: #ffffff; 
         color: #020617; 
         font-size: 15px; 
@@ -118,52 +137,90 @@ st.markdown("""
         box-shadow: 0 8px 24px rgba(15, 23, 42, 0.7);
         font-weight: 600;
     }
-    .stDownloadButton > button:hover {
+    [data-theme="dark"] .stDownloadButton > button:hover {
         background: #e5e7eb; 
         color: #020617;
         box-shadow: 0 10px 30px rgba(15, 23, 42, 0.9);
     }
 
-    /* Info / success boxes */
-    .stAlert {
+    [data-theme="dark"] .stAlert {
         border-radius: 10px;
         border: 1px solid #1f2937;
         background: #020617;
         color: #e5e7eb;
     }
 
-    /* Headers */
-    h1, h2, h3 {
+    [data-theme="dark"] h1, 
+    [data-theme="dark"] h2, 
+    [data-theme="dark"] h3 {
         color: #f9fafb;
     }
 
-    /* File uploader label */
-    .stFileUploader label {
+    [data-theme="dark"] .stFileUploader label,
+    [data-theme="dark"] label {
         color: #e5e7eb;
         font-weight: 500;
     }
 
-    /* Radio / select labels etc. */
-    label {
-        color: #e5e7eb;
+    /* ---------- LIGHT THEME ---------- */
+    [data-theme="light"] .stApp {
+        background: #f5f5f5;
+        color: #111827;
     }
 
-    /* Sidebar app title */
-    .sidebar-title {
-        text-align: center;
-        font-size: 20px;
-        font-weight: 700;
-        margin-top: 0rem;
-        margin-bottom: 0rem;
-        color: #f9fafb;
+    [data-theme="light"] section[data-testid="stSidebar"] {
+        background: #ffffff;
+        border-right: 1px solid #e5e7eb;
     }
-    
-    /* Logo Wuling in sidebar */
-    .sidebar-logo {
-        display: block;
-        margin: 0.5rem auto 0.25rem auto; /* center horizontally */
-        width: 110px;                      /* control size here */
-        border-radius: 12px;               /* subtle rounding */
+    [data-theme="light"] section[data-testid="stSidebar"] h1,
+    [data-theme="light"] section[data-testid="stSidebar"] h2,
+    [data-theme="light"] section[data-testid="stSidebar"] h3,
+    [data-theme="light"] .sidebar-title {
+        color: #111827;
+    }
+
+    [data-theme="light"] .main-title { 
+        color: #111827; 
+    }
+    [data-theme="light"] .sub-title { 
+        color: #6b7280; 
+    }
+    [data-theme="light"] .uploaded-file { 
+        color: #15803d; 
+    }
+
+    [data-theme="light"] .stDownloadButton > button {
+        background: #2563eb; 
+        color: #ffffff; 
+        font-size: 15px; 
+        padding: 0.6rem 1.4rem;
+        border-radius: 999px;
+        border: none;
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+        font-weight: 600;
+    }
+    [data-theme="light"] .stDownloadButton > button:hover {
+        background: #1d4ed8; 
+        box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+    }
+
+    [data-theme="light"] .stAlert {
+        border-radius: 10px;
+        border: 1px solid #e5e7eb;
+        background: #ffffff;
+        color: #111827;
+    }
+
+    [data-theme="light"] h1, 
+    [data-theme="light"] h2, 
+    [data-theme="light"] h3 {
+        color: #111827;
+    }
+
+    [data-theme="light"] .stFileUploader label,
+    [data-theme="light"] label {
+        color: #111827;
+        font-weight: 500;
     }
 </style>
 """, unsafe_allow_html=True)
