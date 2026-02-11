@@ -14,10 +14,15 @@ BASE_DIR = os.path.dirname(__file__)
 LOGO_PATH = os.path.join(BASE_DIR, "assets", "logo.png")
 logo_img = None
 logo_bytes = None
+logo_b64 = None
 if os.path.exists(LOGO_PATH):
     logo_img = Image.open(LOGO_PATH)
     with open(LOGO_PATH, "rb") as f:
         logo_bytes = f.read()
+
+    # Prepare base64 string for HTML rendering
+    import base64 as _b64
+    logo_b64 = _b64.b64encode(logo_bytes).decode("utf-8")
 
 # set page config - use logo image if available (must be called before other st.*)
 if logo_img:
@@ -155,9 +160,10 @@ st.markdown("""
     
     /* Logo Wuling in sidebar */
     .sidebar-logo {
-        width: 125px;
-        align-items: center;
-        margin:0px;
+        display: block;
+        margin: 0.5rem auto 0.25rem auto; /* center horizontally */
+        width: 110px;                      /* control size here */
+        border-radius: 12px;               /* subtle rounding */
     }
 </style>
 """, unsafe_allow_html=True)
@@ -165,8 +171,11 @@ st.markdown("""
 # Sidebar menu
 with st.sidebar:
     # Logo + title in sidebar
-    if logo_img is not None:
-        st.image(logo_img, width = 120)
+    if logo_b64 is not None:
+        st.markdown(
+            f"<img src='data:image/png;base64,{logo_b64}' class='sidebar-logo' />",
+            unsafe_allow_html=True,
+        )
     st.markdown("<div class='sidebar-title'>WULING GP APP</div>", unsafe_allow_html=True)
     st.markdown("---")
 
