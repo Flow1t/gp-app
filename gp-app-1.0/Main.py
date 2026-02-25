@@ -263,7 +263,7 @@ div[data-testid="stSidebar"] .stRadio [data-baseweb="radio"] > div:first-child {
 hr { border-color: rgba(255,255,255,0.06) !important; }
 
 /* ── Hide Streamlit chrome ── */
-#footer, header { display: none !important; }
+#footer { display: none !important; }
 [data-testid="stDecoration"] { display: none !important; }
 
 .file-badge {
