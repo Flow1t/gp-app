@@ -373,14 +373,14 @@ elif selected == "gp":
     col1, col2 = st.columns(2, gap="medium")
 
     with col1:
-        st.markdown('<div class="upload-section"><div class="upload-label">File 1</div>', unsafe_allow_html=True)
+        st.markdown('<div class="upload-section"><div class="upload-label">File GP Penjualan</div>', unsafe_allow_html=True)
         file1 = st.file_uploader("Gross Profit Penjualan", type=["xlsx"], key="gp_f1", label_visibility="collapsed")
         if file1:
             file_badge(file1.name, len(file1.getbuffer()) / 1024)
         st.markdown("</div>", unsafe_allow_html=True)
 
     with col2:
-        st.markdown('<div class="upload-section"><div class="upload-label">File 2</div>', unsafe_allow_html=True)
+        st.markdown('<div class="upload-section"><div class="upload-label">File Report Penjualan Unit</div>', unsafe_allow_html=True)
         file2 = st.file_uploader("Report Penjualan Unit", type=["xlsx"], key="gp_f2", label_visibility="collapsed")
         if file2:
             file_badge(file2.name, len(file2.getbuffer()) / 1024)
