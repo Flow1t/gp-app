@@ -123,7 +123,7 @@ def process_gp(file1, file2):
 
     # Combine the header rows into a single row
     # For merged cells, NaN values will appear. Fill them forward to complete the headers.
-    header_combined = header_rows.fillna(method='ffill', axis=1).agg(' '.join, axis=0)
+    header_combined = header_rows.ffill(axis=1).agg(' '.join, axis=0)
 
     # Assign the combined headers to the DataFrame and drop the header rows
     df1.columns = header_combined
