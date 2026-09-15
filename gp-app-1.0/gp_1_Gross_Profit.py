@@ -341,7 +341,8 @@ def process_gp(file1, file2):
             'GRESIK': 1950000,
             'MADIUN': 2350000,
             'MOJOKERTO': 2150000,
-            'KERTAJAYA': 2000000}
+            'KERTAJAYA': 2000000,
+            'LOMBOK': 5500000}
 
     GP_df['BIAYA EKSPEDISI'] = GP_df['Cabang'].map(mapping1).fillna(GP_df['BIAYA EKSPEDISI']).fillna(0)
 
@@ -520,6 +521,7 @@ def process_gp(file1, file2):
         "KEBONJERUK",
         "HARMONI",
         "TAJUR",
+        "LOMBOK",
         "KUPANG",
         "GRESIK",
         "MOJOKERTO",
